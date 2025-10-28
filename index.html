@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TheraQR | إنشاء وقراءة رموز QR بسهولة</title>
+  <meta name="description" content="أنشئ و اقرأ رموز QR بسهولة عبر الكاميرا أو الصور أو الروابط. موقع TheraQR مجاني وسهل الاستخدام." />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --blue: #00aaff;
+      --green: #00ff99;
+      --gold: gold;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', Tahoma, sans-serif;
+      background-color: #fff;
+      color: #000;
+      text-align: center;
+      transition: background-color 0.4s, color 0.4s;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #0f0f0f;
+        color: white;
+      }
+    }
+
+    /* ====== رأس الموقع ====== */
+    .fixed-header {
+      background-color: #fff;
+      color: #000;
+      padding: 15px 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .fixed-header {
+        background-color: #1a1a1a;
+        color: white;
+      }
+    }
+
+    .menu-button {
+      position: absolute;
+      right: 15px;
+      font-size: 26px;
+      cursor: pointer;
+      color: var(--blue);
+      transition: 0.3s;
+    }
+
+    .menu-button:hover { transform: scale(1.2); }
+
+    .site-name {
+      font-size: 26px;
+      font-weight: bold;
+      color: var(--blue);
+      text-align: center;
+    }
+
+    .side-menu {
+      display: none;
+      position: absolute;
+      top: 70px;
+      right: 10px;
+      background-color: #1a1a1a;
+      border: 1px solid var(--blue);
+      border-radius: 8px;
+      padding: 10px;
+      z-index: 999;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .side-menu li {
+      list-style: none;
+      padding: 10px;
+      color: white;
+      cursor: pointer;
+      border-bottom: 1px solid #333;
+    }
+
+    .side-menu li:hover {
+      background-color: var(--blue);
+    }
+
+    /* ====== بطاقات ====== */
+    .card {
+      position: relative;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 15px;
+      padding: 15px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      color: white;
+      text-align: center;
+    }
+
+    .card h2 {
+      margin-top: 0;
+    }
+
+    .card-content {
+      display: none;
+      margin-top: 15px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .card.expanded .card-content {
+      display: block;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-size: 18px;
+      background: transparent;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      display: none;
+      transition: 0.2s;
+    }
+
+    .close-btn:hover {
+      color: var(--blue);
+      transform: scale(1.2);
+    }
+
+    .card.expanded .close-btn {
+      display: block;
+    }
+
+    .blue { background-color: #1a1a1a; box-shadow: inset 5px 0 0 var(--blue); }
+    .green { background-color: #1a1a1a; box-shadow: inset 5px 0 0 var(--green); }
+    .gold { background-color: #1a1a1a; box-shadow: inset 5px 0 0 var(--gold); }
+
+    input[type="text"], input[type="file"] {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover { background-color: #0088cc; }
+
+    #qrImage {
+      margin-top: 10px;
+      max-width: 200px;
+      cursor: pointer;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    #fullscreenView {
+      display: none;
+      position: fixed;
+      top: 0; right: 0; bottom: 0; left: 0;
+      background-color: rgba(0,0,0,0.95);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeIn 0.3s ease;
+    }
+
+    #fullscreenView img {
+      max-width: 85%;
+      border-radius: 15px;
+    }
+
+    #backArrow {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
+
+    footer {
+      margin: 40px 0 20px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 0.3s, bottom 0.3s;
+      z-index: 10000;
+    }
+
+    .toast.show {
+      opacity: 1;
+      bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="fixed-header">
+    <div class="menu-button" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <div class="site-name">TheraQR</div>
+  </div>
+
+  <div id="sideMenu" class="side-menu">
+    <ul>
+      <li onclick="window.location.href='policy.html'">سياسة وخصوصية الموقع</li>
+    </ul>
+  </div>
+
+  <!-- إنشاء QR -->
+  <div class="card blue" onclick="expandCard(this)">
+    <button class="close-btn" onclick="closeCard(event, this)"><i class="fa-solid fa-xmark"></i></button>
+    <h2><i class="fa-solid fa-qrcode"></i> إنشاء QR</h2>
+    <div class="card-content">
+      <input type="text" id="qrInput" placeholder="اكتب هنا النص أو الرابط" />
+      <br>
+      <button onclick="generateQR()">توليد</button>
+      <div id="qrOptions" style="display:none;">
+        <br>
+        <img id="qrImage" onclick="showFullscreen()" />
+        <br>
+        <button onclick="downloadQR()">تنزيل</button>
+        <button onclick="showFullscreen()">عرض</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- قراءة بالكاميرا -->
+  <div class="card green" onclick="expandCard(this)">
+    <button class="close-btn" onclick="closeCard(event, this)"><i class="fa-solid fa-xmark"></i></button>
+    <h2><i class="fa-solid fa-camera"></i> قراءة QR بالكاميرا</h2>
+    <div class="card-content">
+      <button id="cameraButton" onclick="toggleCamera()">📷 فتح الكاميرا</button>
+      <div id="cameraContainer" style="margin-top:15px; display:none;">
+        <video id="cameraView" width="300" autoplay></video>
+      </div>
+    </div>
+  </div>
+
+  <!-- قراءة من صورة -->
+  <div class="card gold" onclick="expandCard(this)">
+    <button class="close-btn" onclick="closeCard(event, this)"><i class="fa-solid fa-xmark"></i></button>
+    <h2><i class="fa-solid fa-image"></i> قراءة QR من صورة</h2>
+    <div class="card-content">
+      <input type="file" accept="image/*" onchange="readQRFromImage(event)" />
+      <p id="qrResult"></p>
+      <button id="openQR" style="display:none;" onclick="openQR()">فتح</button>
+    </div>
+  </div>
+
+  <!-- شاشة عرض QR -->
+  <div id="fullscreenView">
+    <div id="backArrow" onclick="hideFullscreen()"><i class="fa-solid fa-arrow-right"></i></div>
+    <img id="fullscreenQR" />
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <footer>
+    <p>© 2025 جميع الحقوق محفوظة لـ TheraLaugh</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+  <script>
+    let cameraStream = null;
+
+    function toggleMenu() {
+      const menu = document.getElementById("sideMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+
+    function expandCard(card) {
+      if (card.classList.contains("expanded")) return;
+      document.querySelectorAll(".card").forEach(c => c.classList.remove("expanded"));
+      card.classList.add("expanded");
+    }
+
+    function closeCard(event, btn) {
+      event.stopPropagation();
+      btn.closest(".card").classList.remove("expanded");
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 3000);
+    }
+
+    function generateQR() {
+      const text = document.getElementById("qrInput").value.trim();
+      if (!text) return showToast("الرجاء إدخال نص أو رابط أولاً");
+      QRCode.toDataURL(text, { width: 200 }, function (err, url) {
+        if (err) return console.error(err);
+        document.getElementById("qrImage").src = url;
+        document.getElementById("qrOptions").style.display = "block";
+        document.getElementById("fullscreenQR").src = url;
+        showToast("تم توليد رمز QR بنجاح ✅");
+      });
+    }
+
+    function downloadQR() {
+      const link = document.createElement("a");
+      link.href = document.getElementById("qrImage").src;
+      link.download = "qr.png";
+      link.click();
+    }
+
+    function showFullscreen() {
+      document.getElementById("fullscreenView").style.display = "flex";
+    }
+
+    function hideFullscreen() {
+      document.getElementById("fullscreenView").style.display = "none";
+    }
+
+    // ===== تشغيل / إيقاف الكاميرا =====
+    function toggleCamera() {
+      const video = document.getElementById("cameraView");
+      const container = document.getElementById("cameraContainer");
+      const btn = document.getElementById("cameraButton");
+
+      if (cameraStream) {
+        cameraStream.getTracks().forEach(track => track.stop());
+        cameraStream = null;
+        container.style.display = "none";
+        btn.textContent = "📷 فتح الكاميرا";
+        showToast("تم إيقاف الكاميرا 🔒");
+        return;
+      }
+
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+        .then(stream => {
+          cameraStream = stream;
+          video.srcObject = stream;
+          container.style.display = "block";
+          btn.textContent = "⛔ إيقاف الكاميرا";
+          showToast("تم فتح الكاميرا ✅");
+          startQRScanner(video);
+        })
+        .catch(err => {
+          console.error("خطأ في الوصول إلى الكاميرا:", err);
+          showToast("لم يتم منح إذن الكاميرا ❌");
+        });
+    }
+
+    function startQRScanner(video) {
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d");
+      function scan() {
+        if (!cameraStream) return;
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+          const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+          const code = jsQR(imageData.data, canvas.width, canvas.height);
+          if (code) {
+            showToast("تم التعرف على QR ✅");
+            if (code.data.startsWith("http")) window.open(code.data, "_blank");
+            else showToast("المحتوى: " + code.data);
+            toggleCamera(); // إيقاف الكاميرا بعد القراءة
+            return;
+          }
+        }
+        requestAnimationFrame(scan);
+      }
+      scan();
+    }
+
+    // ===== قراءة QR من صورة =====
+    function readQRFromImage(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function () {
+        const img = new Image();
+        img.onload = function () {
+          const canvas = document.createElement("canvas");
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0);
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const code = jsQR(imageData.data, canvas.width, canvas.height);
+          const qrResult = document.getElementById("qrResult");
+          const openBtn = document.getElementById("openQR");
+          if (code) {
+            qrResult.textContent = code.data;
+            openBtn.style.display = "inline-block";
+            openBtn.dataset.url = code.data;
+            showToast("تم استخراج رمز QR من الصورة ✅");
+          } else {
+            qrResult.textContent = "لم يتم التعرف على QR في الصورة.";
+            openBtn.style.display = "none";
+          }
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function openQR() {
+      const url = document.getElementById("openQR").dataset.url;
+      if (url.startsWith("http")) window.open(url, "_blank");
+      else showToast("محتوى QR: " + url);
+    }
+  </script>
+</body>
+</html>
