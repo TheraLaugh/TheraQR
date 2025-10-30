@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TheraQR | إنشاء وقراءة رموز QR بسهولة</title>
   <meta name="description" content="أنشئ و اقرأ رموز QR بسهولة عبر الكاميرا أو الصور أو الروابط. موقع TheraQR مجاني وسهل الاستخدام." />
+  <!-- أيقونة الموقع: استبدل المسارات بالصور الفعلية لديك -->
+  <link rel="icon" href="/icon.png" />
+  <link rel="apple-touch-icon" href="/icon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
@@ -13,8 +16,9 @@
       --blue: #00aaff;
       --green: #00ff99;
       --gold: gold;
+      --panel-bg: rgba(255,255,255,0.98);
+      --panel-bg-dark: rgba(20,20,20,0.98);
     }
-
     body {
       margin: 0;
       padding: 0;
@@ -24,7 +28,6 @@
       text-align: center;
       transition: background-color 0.4s, color 0.4s;
     }
-
     @media (prefers-color-scheme: dark) {
       body {
         background-color: #0f0f0f;
@@ -32,7 +35,7 @@
       }
     }
 
-    /* ====== رأس الموقع ====== */
+    /* رأس ثابت */
     .fixed-header {
       background-color: #fff;
       color: #000;
@@ -45,14 +48,9 @@
       top: 0;
       z-index: 1000;
     }
-
     @media (prefers-color-scheme: dark) {
-      .fixed-header {
-        background-color: #1a1a1a;
-        color: white;
-      }
+      .fixed-header { background-color: #1a1a1a; color: white; }
     }
-
     .menu-button {
       position: absolute;
       right: 15px;
@@ -61,9 +59,7 @@
       color: var(--blue);
       transition: 0.3s;
     }
-
     .menu-button:hover { transform: scale(1.2); }
-
     .site-name {
       font-size: 26px;
       font-weight: bold;
@@ -81,27 +77,21 @@
       border-radius: 8px;
       padding: 10px;
       z-index: 999;
-      animation: fadeIn 0.3s ease;
+      animation: fadeIn 0.2s ease;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
+    @keyframes fadeIn { from { opacity:0; transform:scale(.98);} to {opacity:1; transform:scale(1);} }
+    .side-menu ul { margin:0; padding:0; }
     .side-menu li {
       list-style: none;
       padding: 10px;
       color: white;
       cursor: pointer;
       border-bottom: 1px solid #333;
+      text-align: right;
     }
+    .side-menu li:hover { background-color: var(--blue); }
 
-    .side-menu li:hover {
-      background-color: var(--blue);
-    }
-
-    /* ====== بطاقات ====== */
+    /* البطاقات */
     .card {
       position: relative;
       margin: 20px auto;
@@ -114,20 +104,9 @@
       color: white;
       text-align: center;
     }
-
-    .card h2 {
-      margin-top: 0;
-    }
-
-    .card-content {
-      display: none;
-      margin-top: 15px;
-      animation: fadeIn 0.4s ease;
-    }
-
-    .card.expanded .card-content {
-      display: block;
-    }
+    .card h2 { margin-top: 0; }
+    .card-content { display: none; margin-top: 15px; animation: fadeIn 0.3s ease; }
+    .card.expanded .card-content { display: block; }
 
     .close-btn {
       position: absolute;
@@ -141,21 +120,14 @@
       display: none;
       transition: 0.2s;
     }
-
-    .close-btn:hover {
-      color: var(--blue);
-      transform: scale(1.2);
-    }
-
-    .card.expanded .close-btn {
-      display: block;
-    }
+    .close-btn:hover { color: var(--blue); transform: scale(1.2); }
+    .card.expanded .close-btn { display: block; }
 
     .blue { background-color: #1a1a1a; box-shadow: inset 5px 0 0 var(--blue); }
     .green { background-color: #1a1a1a; box-shadow: inset 5px 0 0 var(--green); }
     .gold { background-color: #1a1a1a; box-shadow: inset 5px 0 0 var(--gold); }
 
-    input[type="text"], input[type="file"] {
+    input[type="text"], input[type="file"], select, input[type="number"] {
       width: 80%;
       padding: 10px;
       margin: 10px 0;
@@ -163,7 +135,6 @@
       border: none;
       outline: none;
     }
-
     button {
       padding: 10px 20px;
       background-color: var(--blue);
@@ -173,29 +144,18 @@
       cursor: pointer;
       transition: 0.3s;
     }
+    button:hover { opacity: 0.9; }
 
-    button:hover { opacity: 0.85; }
+    #cameraButton { background-color: var(--green); color: black; font-weight: bold; }
+    #openQR { background-color: var(--gold); color: black; font-weight: bold; }
 
-    /* زر الكاميرا */
-    #cameraButton {
-      background-color: var(--green);
-      color: black;
-      font-weight: bold;
-    }
-
-    /* زر فتح QR من الصورة */
-    #openQR {
-      background-color: var(--gold);
-      color: black;
-      font-weight: bold;
-    }
-
-    #qrImage {
+    #qrCanvas {
       margin-top: 10px;
-      max-width: 200px;
-      cursor: pointer;
+      max-width: 320px;
+      width: 100%;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      box-shadow: 0 0 12px rgba(0,0,0,0.45);
+      background: white;
     }
 
     #fullscreenView {
@@ -206,51 +166,56 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      animation: fadeIn 0.3s ease;
+      animation: fadeIn 0.2s ease;
     }
-
-    #fullscreenView img {
-      max-width: 85%;
-      border-radius: 15px;
-    }
-
+    #fullscreenView img { max-width: 85%; border-radius: 15px; }
     #backArrow {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 24px;
-      color: white;
-      cursor: pointer;
+      position: absolute; top: 15px; right: 20px; font-size: 24px; color: white; cursor: pointer;
     }
 
-    footer {
-      margin: 40px 0 20px;
-      font-size: 14px;
-      color: #888;
-    }
+    footer { margin: 40px 0 20px; font-size: 14px; color: #888; }
 
     .toast {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #333;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
-      opacity: 0;
-      transition: opacity 0.3s, bottom 0.3s;
-      z-index: 10000;
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      background-color: #333; color: white; padding: 12px 20px; border-radius: 8px;
+      opacity: 0; transition: opacity 0.3s, bottom 0.3s; z-index: 10000;
     }
+    .toast.show { opacity: 1; bottom: 40px; }
 
-    .toast.show {
-      opacity: 1;
-      bottom: 40px;
+    /* لوحة إعدادات - يمكن عرضها كنافذة أو شريط جانبي */
+    .settings-overlay { display:none; position:fixed; inset:0; z-index:10001; }
+    .settings-modal {
+      position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); width:90%; max-width:600px;
+      border-radius:12px; padding:18px; z-index:10002; box-shadow:0 20px 50px rgba(0,0,0,0.4);
+      background:var(--panel-bg);
+    }
+    @media (prefers-color-scheme: dark) { .settings-modal{ background:var(--panel-bg-dark); } }
+    .settings-sidebar {
+      position:fixed; top:70px; right:10px; width:320px; max-width:90%; height:calc(100% - 90px);
+      border-radius:12px; padding:14px; z-index:10002; box-shadow:0 20px 50px rgba(0,0,0,0.4);
+      background:var(--panel-bg);
+      overflow:auto;
+    }
+    .settings-row { display:flex; gap:8px; align-items:center; justify-content:space-between; margin:10px 0; flex-wrap:wrap; }
+    .settings-row label { flex:1; text-align:right; font-size:14px; }
+    .settings-controls { flex:1; text-align:left; }
+    .settings-actions { display:flex; gap:10px; justify-content:center; margin-top:12px; }
+
+    .preview-box { display:flex; gap:12px; align-items:center; justify-content:center; margin-top:10px; padding:8px; border-radius:8px; background:rgba(0,0,0,0.03);}
+    .small-preview { width:120px; height:120px; border-radius:8px; overflow:hidden; display:flex; align-items:center; justify-content:center; background:white; box-shadow:0 4px 10px rgba(0,0,0,0.08); }
+    @media (prefers-color-scheme: dark) { .small-preview{ background:#111; } }
+
+    .radio-group { display:flex; gap:8px; justify-content:flex-start; align-items:center; direction:ltr; }
+    .radio-group button { padding:8px 12px; border-radius:8px; background:#eee; color:#111; border:none; cursor:pointer; }
+    .radio-group button.active { background:var(--blue); color:white; }
+
+    /* تباعد للهاتف */
+    @media (max-width:520px) {
+      .settings-modal { width:95%; padding:12px; }
     }
   </style>
 </head>
 <body>
-
   <div class="fixed-header">
     <div class="menu-button" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
     <div class="site-name">TheraQR</div>
@@ -259,7 +224,97 @@
   <div id="sideMenu" class="side-menu">
     <ul>
       <li onclick="window.location.href='policy.html'">سياسة وخصوصية الموقع</li>
+      <li onclick="openSettingsUI()">إعدادات</li>
     </ul>
+  </div>
+
+  <!-- إعدادات: overlay + modal + sidebar (التفعيل حسب اختيار المستخدم) -->
+  <div id="settingsOverlay" class="settings-overlay" onclick="overlayClick(event)"></div>
+
+  <div id="settingsModal" class="settings-modal" style="display:none;">
+    <h3 style="margin-top:0;">إعدادات رمز QR</h3>
+
+    <div class="settings-row">
+      <label>طريقة عرض لوحة الإعدادات</label>
+      <div class="settings-controls">
+        <div class="radio-group" id="displayTypeBtns">
+          <button data-value="modal">نافذة منبثقة</button>
+          <button data-value="sidebar">شريط جانبي</button>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="settings-row">
+      <label>نمط الـ QR</label>
+      <div class="settings-controls">
+        <div class="radio-group" id="styleBtns">
+          <button data-value="classic">🔳 كلاسيكي</button>
+          <button data-value="dot">⚪ نقاط</button>
+          <button data-value="hybrid">🟣 هجين</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-row">
+      <label for="sizeRange">حجم الكود (px)</label>
+      <div class="settings-controls"><input id="sizeRange" type="range" min="100" max="800" value="300"></div>
+      <div style="min-width:48px;text-align:left;"><span id="sizeVal">300</span>px</div>
+    </div>
+
+    <div class="settings-row">
+      <label for="eccSelect">تصحيح الخطأ</label>
+      <div class="settings-controls">
+        <select id="eccSelect">
+          <option value="L">L - منخفض</option>
+          <option value="M">M - متوسط</option>
+          <option value="Q">Q - مرتفع</option>
+          <option value="H">H - الأعلى</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="settings-row">
+      <label for="colorDark">لون المقدمة (Hex)</label>
+      <div class="settings-controls"><input id="colorDark" type="text" value="#000000"></div>
+    </div>
+
+    <div class="settings-row">
+      <label for="colorLight">خلفية (Hex)</label>
+      <div class="settings-controls"><input id="colorLight" type="text" value="#ffffff"></div>
+    </div>
+
+    <div class="settings-row">
+      <label for="logoScale">حجم الشعار (%)</label>
+      <div class="settings-controls"><input id="logoScale" type="range" min="0" max="50" value="20"></div>
+      <div style="min-width:48px;text-align:left;"><span id="logoScaleVal">20%</span></div>
+    </div>
+
+    <div class="settings-row">
+      <label for="logoOpacity">شفافية الشعار (%)</label>
+      <div class="settings-controls"><input id="logoOpacity" type="range" min="0" max="100" value="100"></div>
+      <div style="min-width:48px;text-align:left;"><span id="logoOpacityVal">100%</span></div>
+    </div>
+
+    <div class="preview-box">
+      <div style="flex:1;text-align:right;">
+        <div style="font-size:13px;color:gray;">معاينة حية</div>
+        <div style="font-size:12px;color:#666;">المحتوى في المعاينة: <span id="previewText">https://theraqr.example</span></div>
+      </div>
+      <div class="small-preview"><canvas id="previewCanvas" width="120" height="120"></canvas></div>
+    </div>
+
+    <div class="settings-actions">
+      <button onclick="applySettingsUI()">✅ تأكيد</button>
+      <button onclick="resetSettingsUI()">🔄 إعادة ضبط</button>
+      <button onclick="closeSettingsUI()">❌ إغلاق</button>
+    </div>
+  </div>
+
+  <!-- شريط جانبي (بديل للـ modal) -->
+  <div id="settingsSidebar" class="settings-sidebar" style="display:none;">
+    <!-- سنعيد استخدام نفس العناصر داخله عبر نسخ القيم عند العرض -->
   </div>
 
   <!-- إنشاء QR -->
@@ -272,7 +327,7 @@
       <button onclick="generateQR()">توليد</button>
       <div id="qrOptions" style="display:none;">
         <br>
-        <img id="qrImage" onclick="showFullscreen()" />
+        <canvas id="qrCanvas"></canvas>
         <br>
         <button onclick="downloadQR()">تنزيل</button>
         <button onclick="showFullscreen()">عرض</button>
@@ -287,7 +342,7 @@
     <div class="card-content">
       <button id="cameraButton" onclick="toggleCamera()">📷 فتح الكاميرا</button>
       <div id="cameraContainer" style="margin-top:15px; display:none;">
-        <video id="cameraView" width="300" autoplay></video>
+        <video id="cameraView" width="300" autoplay playsinline></video>
       </div>
     </div>
   </div>
@@ -303,7 +358,7 @@
     </div>
   </div>
 
-  <!-- شاشة عرض QR -->
+  <!-- شاشة عرض ملء -->
   <div id="fullscreenView">
     <div id="backArrow" onclick="hideFullscreen()"><i class="fa-solid fa-arrow-right"></i></div>
     <img id="fullscreenQR" />
@@ -318,104 +373,451 @@
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
   <script>
-    let cameraStream = null;
+    /******************************
+     * إعدادات افتراضية وتحميل حفظ
+     ******************************/
+    const DEFAULTS = {
+      displayType: 'modal', // 'modal' أو 'sidebar'
+      style: 'classic',     // 'classic' | 'dot' | 'hybrid'
+      size: 300,
+      ecc: 'M',
+      colorDark: '#000000',
+      colorLight: '#ffffff',
+      logoScale: 0.2,
+      logoOpacity: 1,
+      previewText: 'https://theraqr.example'
+    };
 
-    function toggleMenu() {
-      const menu = document.getElementById("sideMenu");
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    let settings = loadSettings();
+
+    function loadSettings(){
+      try {
+        const raw = localStorage.getItem('theraqr_settings_v2');
+        if(raw) {
+          const s = JSON.parse(raw);
+          return Object.assign({}, DEFAULTS, s);
+        }
+      } catch(e){}
+      return Object.assign({}, DEFAULTS);
     }
+    function saveSettings(){
+      try { localStorage.setItem('theraqr_settings_v2', JSON.stringify(settings)); } catch(e){}
+    }
+
+    /******************************
+     * عناصر الواجهة - ربط
+     ******************************/
+    const sideMenu = document.getElementById('sideMenu');
+    function toggleMenu(){ sideMenu.style.display = sideMenu.style.display === 'block' ? 'none' : 'block'; }
 
     function expandCard(card) {
       if (card.classList.contains("expanded")) return;
       document.querySelectorAll(".card").forEach(c => c.classList.remove("expanded"));
       card.classList.add("expanded");
     }
-
     function closeCard(event, btn) {
       event.stopPropagation();
       btn.closest(".card").classList.remove("expanded");
     }
 
-    function showToast(msg) {
-      const toast = document.getElementById("toast");
-      toast.textContent = msg;
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 3000);
+    function showToast(msg){
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(()=>t.classList.remove('show'),3000);
     }
 
-    function generateQR() {
-      const text = document.getElementById("qrInput").value.trim();
-      if (!text) return showToast("الرجاء إدخال نص أو رابط أولاً");
-      QRCode.toDataURL(text, { width: 200 }, function (err, url) {
-        if (err) return console.error(err);
-        document.getElementById("qrImage").src = url;
-        document.getElementById("qrOptions").style.display = "block";
-        document.getElementById("fullscreenQR").src = url;
-        showToast("تم توليد رمز QR بنجاح ✅");
+    /******************************
+     * إعدادات الواجهة: فتح/إغلاق/مزامنة الحقول
+     ******************************/
+    const overlay = document.getElementById('settingsOverlay');
+    const modal = document.getElementById('settingsModal');
+    const sidebar = document.getElementById('settingsSidebar');
+
+    function openSettingsUI(){
+      applySettingsToUI(); // مزامنة الحقول مع الإعدادات
+      if(settings.displayType === 'sidebar'){
+        // عرض الشريط الجانبي: ننسخ داخل الشريط محتوى الـ modal داخليًا
+        sidebar.innerHTML = modal.innerHTML;
+        // نسخ ربط الأحداث للمحتوى الجديد
+        document.body.appendChild(sidebar);
+        sidebar.style.display = 'block';
+        overlay.style.display = 'block';
+        overlay.onclick = () => closeSettingsUI();
+        // إعداد تكرار الأحداث داخل الشريط
+        bindUIEvents(sidebar);
+      } else {
+        modal.style.display = 'block';
+        overlay.style.display = 'block';
+        bindUIEvents(modal);
+      }
+      // تهيئة أزرار العرض داخل الواجهة (ستتأكد bindUIEvents)
+    }
+
+    function closeSettingsUI(){
+      modal.style.display = 'none';
+      sidebar.style.display = 'none';
+      overlay.style.display = 'none';
+      overlay.onclick = null;
+      // إذا كان هناك sidebar داخلي في DOM أعده فارغًا (لتجنب تكرار العناصر)
+      sidebar.innerHTML = '';
+    }
+
+    function overlayClick(e){ if(e.target === overlay) closeSettingsUI(); }
+
+    // يربط الأحداث لعناصر داخل العنصر الحاوي (modal أو sidebar)
+    function bindUIEvents(container){
+      // display type buttons
+      const dispBtns = container.querySelectorAll('#displayTypeBtns button');
+      dispBtns.forEach(b=>{
+        b.classList.toggle('active', b.dataset.value === settings.displayType);
+        b.onclick = ()=>{
+          container.querySelectorAll('#displayTypeBtns button').forEach(x=>x.classList.remove('active'));
+          b.classList.add('active');
+          settings.displayType = b.dataset.value;
+        };
+      });
+
+      // style buttons
+      const styleBtns = container.querySelectorAll('#styleBtns button');
+      styleBtns.forEach(b=>{
+        b.classList.toggle('active', b.dataset.value === settings.style);
+        b.onclick = ()=>{
+          container.querySelectorAll('#styleBtns button').forEach(x=>x.classList.remove('active'));
+          b.classList.add('active');
+          settings.style = b.dataset.value;
+          updatePreview(container);
+        };
+      });
+
+      // size
+      const sizeRange = container.querySelector('#sizeRange');
+      const sizeVal = container.querySelector('#sizeVal');
+      sizeRange.value = settings.size;
+      sizeVal.textContent = settings.size;
+      sizeRange.oninput = ()=>{ sizeVal.textContent = sizeRange.value; settings.size = parseInt(sizeRange.value); updatePreview(container); };
+
+      // ecc
+      const eccSelect = container.querySelector('#eccSelect');
+      eccSelect.value = settings.ecc;
+      eccSelect.onchange = ()=>{ settings.ecc = eccSelect.value; updatePreview(container); };
+
+      // colors
+      const colorDark = container.querySelector('#colorDark');
+      const colorLight = container.querySelector('#colorLight');
+      colorDark.value = settings.colorDark;
+      colorLight.value = settings.colorLight;
+      colorDark.onchange = ()=>{ settings.colorDark = colorDark.value; updatePreview(container); };
+      colorLight.onchange = ()=>{ settings.colorLight = colorLight.value; updatePreview(container); };
+
+      // logo scale & opacity
+      const logoScale = container.querySelector('#logoScale');
+      const logoOpacity = container.querySelector('#logoOpacity');
+      const logoScaleVal = container.querySelector('#logoScaleVal');
+      const logoOpacityVal = container.querySelector('#logoOpacityVal');
+      logoScale.value = Math.round((settings.logoScale||0.2)*100);
+      logoOpacity.value = Math.round((settings.logoOpacity||1)*100);
+      logoScaleVal.textContent = logoScale.value + '%';
+      logoOpacityVal.textContent = logoOpacity.value + '%';
+      logoScale.oninput = ()=>{
+        settings.logoScale = parseInt(logoScale.value)/100;
+        logoScaleVal.textContent = logoScale.value + '%';
+        updatePreview(container);
+      };
+      logoOpacity.oninput = ()=>{
+        settings.logoOpacity = parseInt(logoOpacity.value)/100;
+        logoOpacityVal.textContent = logoOpacity.value + '%';
+        updatePreview(container);
+      };
+
+      // preview text
+      const previewTextEl = container.querySelector('#previewText');
+      if(previewTextEl) previewTextEl.textContent = settings.previewText || DEFAULTS.previewText;
+
+      // preview canvas is inside container - re-draw on show
+      updatePreview(container);
+
+      // bottom buttons
+      const buttons = container.querySelectorAll('.settings-actions button');
+      buttons.forEach(btn=>{
+        const txt = btn.textContent.trim();
+        if(txt.includes('تأكيد')) btn.onclick = ()=>{ applySettingsUI(); };
+        if(txt.includes('إعادة')) btn.onclick = ()=>{ resetSettingsUI(); };
+        if(txt.includes('إغلاق')) btn.onclick = ()=>{ closeSettingsUI(); };
       });
     }
 
-    function downloadQR() {
-      const link = document.createElement("a");
-      link.href = document.getElementById("qrImage").src;
-      link.download = "qr.png";
+    function applySettingsToUI(){
+      // إذا أردنا: ننسخ القيم من settings إلى الـ modal DOM (ستُعمل bind قبل العرض عادة)
+      // هذا فقط يضمن أن modal يبدأ بالقيم الصحيحة
+      const m = modal;
+      if(!m) return;
+      // محارف محددة يتم تعيينها عند bind
+    }
+
+    /******************************
+     * معاينة حية: رسم مصغر
+     ******************************/
+    const PREVIEW_CANVAS = document.getElementById('previewCanvas');
+
+    function updatePreview(container){
+      const text = settings.previewText || DEFAULTS.previewText;
+      // إذا تم تمرير الحاوية: نبحث عن previewCanvas داخلها وإلا نستخدم الموجود
+      const pc = (container && container.querySelector('#previewCanvas')) || PREVIEW_CANVAS;
+      if(!pc) return;
+      drawQROnCanvas(pc, text, Math.min(120, settings.size), settings.style, {
+        colorDark: settings.colorDark,
+        colorLight: settings.colorLight,
+        ecc: settings.ecc,
+        logoScale: Math.min(0.35, settings.logoScale),
+        logoOpacity: settings.logoOpacity
+      }, true);
+    }
+
+    /******************************
+     * رسم QR مخصص على Canvas (مربعات / نقاط / هجين)
+     * يعتمد على مكتبة qrcode (QRCode.create) للحصول على المصفوفة (modules)
+     ******************************/
+    async function drawQROnCanvas(canvas, text, size, mode, opts = {}, isPreview=false){
+      // وضع قياسات
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      // خلفية
+      ctx.fillStyle = opts.colorLight || settings.colorLight || '#fff';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+
+      // توليد الـ QR matrix باستخدام مكتبة qrcode
+      // نستخدم QRCode.create من المكتبة qrcode (متضمن عبر cdn)
+      try {
+        const qrm = QRCode.create(text, { errorCorrectionLevel: opts.ecc || settings.ecc });
+        const modules = qrm.modules; // مصفوفة ثنائية
+        if(!modules) throw new Error('no modules');
+        const moduleCount = modules.size;
+        const moduleSize = canvas.width / moduleCount;
+
+        // دالة للتحقق إن موضع داخل finder patterns (7x7) — نحافظ عليها كمربعات واضحة
+        function isFinder(r,c){
+          const n = moduleCount;
+          // finder top-left (0..6,0..6), top-right (0..6,n-7..n-1), bottom-left (n-7..n-1,0..6)
+          if(r<=6 && c<=6) return true;
+          if(r<=6 && c>=n-7) return true;
+          if(r>=n-7 && c<=6) return true;
+          return false;
+        }
+
+        // رسم كل module
+        for(let r=0;r<moduleCount;r++){
+          for(let c=0;c<moduleCount;c++){
+            const dark = modules.get(c, r); // بعض نسخ المكتبة تستخدم get(x,y)
+            if(!dark) continue;
+            const x = Math.round(c * moduleSize);
+            const y = Math.round(r * moduleSize);
+
+            // اذا هو finder -> نرسمه كمربع كبير للحفاظ على قابلية القراءة
+            if(isFinder(r,c)){
+              ctx.fillStyle = opts.colorDark || settings.colorDark;
+              ctx.fillRect(x, y, Math.ceil(moduleSize), Math.ceil(moduleSize));
+              continue;
+            }
+
+            // بناء على النمط: classic => مربعات، dot => دوائر، hybrid => دوائر مع زوايا مربعة
+            ctx.fillStyle = opts.colorDark || settings.colorDark;
+            if(mode === 'classic'){
+              ctx.fillRect(x, y, Math.ceil(moduleSize), Math.ceil(moduleSize));
+            } else if(mode === 'dot'){
+              // رسم دائرة مركزية داخل المربع
+              const cx = x + moduleSize/2, cy = y + moduleSize/2;
+              const radius = moduleSize*0.45;
+              ctx.beginPath();
+              ctx.arc(cx, cy, radius, 0, Math.PI*2);
+              ctx.fill();
+            } else if(mode === 'hybrid'){
+              // نرسم دائرتين صغيرة ومربع صغير مختلط: لنرسم دائرة أصغر لتأثير جميل
+              const cx = x + moduleSize/2, cy = y + moduleSize/2;
+              const radius = moduleSize*0.35;
+              ctx.beginPath();
+              ctx.arc(cx, cy, radius, 0, Math.PI*2);
+              ctx.fill();
+              // ويمكن إضافة ظل خفيف مربع (غير ضروري)
+            }
+          }
+        }
+
+        // رسم شعار (إذا لم يكن معاينة صغيرة أو حجم شعار > 0)
+        if((!isPreview) || (isPreview && opts.logoScale > 0.05)){
+          await drawLogoInCenter(canvas, opts);
+        }
+
+      } catch(e){
+        console.error('drawQROnCanvas error', e);
+        // fallback: استخدم QRCode.toCanvas بسرعة
+        try{
+          await QRCode.toCanvas(canvas, text, { width: size, margin: 1, color: { dark: opts.colorDark || settings.colorDark, light: opts.colorLight || settings.colorLight }, errorCorrectionLevel: opts.ecc || settings.ecc });
+          if(!isPreview) await drawLogoInCenter(canvas, opts);
+        }catch(err){ console.error('fallback failed', err); }
+      }
+    }
+
+    /******************************
+     * معالجة الشعار: تحويل الأسود إلى أبيض، الخلفية البيضاء شفافة
+     ******************************/
+    const LOGO_SRC = '/logo.png'; // ضع هنا مسار الشعار الذي أرسلته (الطبيب فقط)
+    async function drawLogoInCenter(qrCanvas, opts){
+      const ctx = qrCanvas.getContext('2d');
+      const size = qrCanvas.width;
+      const logoScale = opts.logoScale || settings.logoScale || 0.2;
+      if(!logoScale || logoScale <= 0) return;
+      const logoW = Math.floor(size * logoScale);
+      // تحميل الصورة
+      const img = new Image(); img.crossOrigin = 'anonymous'; img.src = LOGO_SRC;
+      return new Promise((resolve)=>{
+        img.onload = ()=>{
+          // نرسم على كانفاس مؤقت بحجم الشعار
+          const tmp = document.createElement('canvas'); tmp.width = logoW; tmp.height = logoW;
+          const tctx = tmp.getContext('2d');
+          // ملء بخلفية شفافة ثم رسم الشعار بالحجم المطلوب
+          tctx.clearRect(0,0,tmp.width,tmp.height);
+          // نحافظ على نسبة الصورة
+          let h = Math.floor(logoW * (img.height / img.width));
+          if(h > logoW) h = logoW;
+          const w = Math.floor(logoW);
+          tctx.drawImage(img, 0, 0, w, h);
+          // معالجة بكسلات الشعار
+          try{
+            const id = tctx.getImageData(0,0,tmp.width,tmp.height);
+            const d = id.data;
+            for(let i=0;i<d.length;i+=4){
+              const r=d[i], g=d[i+1], b=d[i+2];
+              // إذا تقارب الأبيض -> اجعله شفاف
+              if(r>240 && g>240 && b>240){ d[i+3] = 0; continue; }
+              // إذا كان قريبًا من الأسود -> اجعله أبيض
+              if(r<60 && g<60 && b<60){ d[i]=255; d[i+1]=255; d[i+2]=255; d[i+3]=255; continue; }
+              // خلاف ذلك نتركه مع المحافظة على الشفافية
+            }
+            tctx.putImageData(id,0,0);
+          }catch(e){ /* قد يفشل بسبب CORS */ console.warn('logo process failed', e); }
+
+          // رسم خلفية صغيرة دائرية بيضاء/شفافة للحماية إن لزم
+          const centerX = Math.floor((size - tmp.width)/2);
+          const centerY = Math.floor((size - tmp.height)/2);
+          ctx.save();
+          ctx.globalAlpha = opts.logoOpacity || settings.logoOpacity || 1;
+          // إذا لون المقدمة داكن: قد نرسم حلقة بيضاء شفافة— هنا نتركها فارغة لحماية القابلية للقراءة
+          //ctx.fillStyle = 'rgba(255,255,255,0.0)'; ctx.fillRect(centerX-6, centerY-6, tmp.width+12, tmp.height+12);
+          ctx.drawImage(tmp, centerX, centerY, tmp.width, tmp.height);
+          ctx.restore();
+          resolve();
+        };
+        img.onerror = ()=>{
+          // لا يوجد شعار أو خطأ بالتحميل
+          resolve();
+        };
+      });
+    }
+
+    /******************************
+     * زر التوليد: يطبق الإعدادات مباشرة ويرسم على القماش الكبير
+     ******************************/
+    const QR_CANVAS = document.getElementById('qrCanvas');
+    async function generateQR(){
+      const text = document.getElementById('qrInput').value.trim();
+      if(!text) return showToast('الرجاء إدخال نص أو رابط أولاً');
+      // تطبيق الإعدادات (تم حفظها مسبقًا عند التغيير)
+      saveSettings();
+      // اظهر خيارات
+      document.getElementById('qrOptions').style.display = 'block';
+      // رسم
+      await drawQROnCanvas(QR_CANVAS, text, settings.size, settings.style, {
+        colorDark: settings.colorDark,
+        colorLight: settings.colorLight,
+        ecc: settings.ecc,
+        logoScale: settings.logoScale,
+        logoOpacity: settings.logoOpacity
+      }, false);
+      document.getElementById('fullscreenQR').src = QR_CANVAS.toDataURL();
+      showToast('تم توليد رمز QR بنجاح ✅');
+    }
+
+    function downloadQR(){
+      const link = document.createElement('a');
+      link.href = QR_CANVAS.toDataURL('image/png');
+      link.download = 'qr.png';
       link.click();
     }
 
-    function showFullscreen() {
-      document.getElementById("fullscreenView").style.display = "flex";
+    function showFullscreen(){ document.getElementById('fullscreenView').style.display = 'flex'; }
+    function hideFullscreen(){ document.getElementById('fullscreenView').style.display = 'none'; }
+
+    /******************************
+     * قراءة الكاميرا: BarcodeDetector أو jsQR
+     ******************************/
+    let cameraStream = null;
+    const hasBarcodeDetector = ('BarcodeDetector' in window);
+    if(hasBarcodeDetector){
+      try { window.barcodeDetector = new BarcodeDetector({ formats: ['qr_code'] }); }
+      catch(e){ console.warn('BarcodeDetector init failed', e); }
     }
 
-    function hideFullscreen() {
-      document.getElementById("fullscreenView").style.display = "none";
-    }
-
-    // ===== تشغيل / إيقاف الكاميرا =====
-    function toggleCamera() {
-      const video = document.getElementById("cameraView");
-      const container = document.getElementById("cameraContainer");
-      const btn = document.getElementById("cameraButton");
-
-      if (cameraStream) {
-        cameraStream.getTracks().forEach(track => track.stop());
+    function toggleCamera(){
+      const video = document.getElementById('cameraView');
+      const container = document.getElementById('cameraContainer');
+      const btn = document.getElementById('cameraButton');
+      if(cameraStream){
+        cameraStream.getTracks().forEach(t=>t.stop());
         cameraStream = null;
-        container.style.display = "none";
-        btn.textContent = "📷 فتح الكاميرا";
-        showToast("تم إيقاف الكاميرا 🔒");
+        container.style.display = 'none';
+        btn.textContent = '📷 فتح الكاميرا';
+        showToast('تم إيقاف الكاميرا 🔒');
         return;
       }
-
-      navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
-        .then(stream => {
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+        .then(stream=>{
           cameraStream = stream;
           video.srcObject = stream;
-          container.style.display = "block";
-          btn.textContent = "⛔ إيقاف الكاميرا";
-          showToast("تم فتح الكاميرا ✅");
-          startQRScanner(video);
+          container.style.display = 'block';
+          btn.textContent = '⛔ إيقاف الكاميرا';
+          showToast('تم فتح الكاميرا ✅');
+          if(window.barcodeDetector) startBarcodeDetector(video);
+          else startQRScanner(video);
         })
-        .catch(err => {
-          console.error("خطأ في الوصول إلى الكاميرا:", err);
-          showToast("لم يتم منح إذن الكاميرا ❌");
-        });
+        .catch(err=>{ console.error(err); showToast('لم يتم منح إذن الكاميرا ❌'); });
     }
 
-    function startQRScanner(video) {
-      const canvas = document.createElement("canvas");
-      const context = canvas.getContext("2d");
-      function scan() {
-        if (!cameraStream) return;
-        if (video.readyState === video.HAVE_ENOUGH_DATA) {
-          canvas.width = video.videoWidth;
-          canvas.height = video.videoHeight;
-          context.drawImage(video, 0, 0, canvas.width, canvas.height);
-          const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    function startBarcodeDetector(video){
+      const canvas = document.createElement('canvas'); const ctx = canvas.getContext('2d');
+      async function detect(){
+        if(!cameraStream) return;
+        if(video.readyState === video.HAVE_ENOUGH_DATA){
+          canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+          ctx.drawImage(video,0,0,canvas.width,canvas.height);
+          try{
+            const codes = await window.barcodeDetector.detect(canvas);
+            if(codes && codes.length){
+              handleDetectedCode(codes[0].rawValue || codes[0].rawData);
+              toggleCamera();
+              return;
+            }
+          }catch(e){ console.warn('detector error', e); }
+        }
+        requestAnimationFrame(detect);
+      }
+      detect();
+    }
+
+    function startQRScanner(video){
+      const canvas = document.createElement('canvas'); const ctx = canvas.getContext('2d');
+      function scan(){
+        if(!cameraStream) return;
+        if(video.readyState === video.HAVE_ENOUGH_DATA){
+          canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+          ctx.drawImage(video,0,0,canvas.width,canvas.height);
+          const imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
           const code = jsQR(imageData.data, canvas.width, canvas.height);
-          if (code) {
-            showToast("تم التعرف على QR ✅");
-            if (code.data.startsWith("http")) window.open(code.data, "_blank");
-            else showToast("المحتوى: " + code.data);
-            toggleCamera(); // إيقاف الكاميرا بعد القراءة
+          if(code){
+            handleDetectedCode(code.data);
+            toggleCamera();
             return;
           }
         }
@@ -424,43 +826,160 @@
       scan();
     }
 
-    // ===== قراءة QR من صورة =====
-    function readQRFromImage(event) {
+    function handleDetectedCode(data){
+      showToast('تم التعرف على QR ✅');
+      if(typeof data === 'string' && data.startsWith('http')) window.open(data, '_blank');
+      else showToast('المحتوى: ' + data);
+    }
+
+    /******************************
+     * قراءة QR من صورة
+     ******************************/
+    function readQRFromImage(event){
       const file = event.target.files[0];
-      if (!file) return;
+      if(!file) return;
       const reader = new FileReader();
-      reader.onload = function () {
+      reader.onload = function(){
         const img = new Image();
-        img.onload = function () {
-          const canvas = document.createElement("canvas");
-          canvas.width = img.width;
-          canvas.height = img.height;
-          const ctx = canvas.getContext("2d");
-          ctx.drawImage(img, 0, 0);
-          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        img.onload = function(){
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width; canvas.height = img.height;
+          const ctx = canvas.getContext('2d'); ctx.drawImage(img,0,0);
+          const imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
           const code = jsQR(imageData.data, canvas.width, canvas.height);
-          const qrResult = document.getElementById("qrResult");
-          const openBtn = document.getElementById("openQR");
-          if (code) {
+          const qrResult = document.getElementById('qrResult');
+          const openBtn = document.getElementById('openQR');
+          if(code){
             qrResult.textContent = code.data;
-            openBtn.style.display = "inline-block";
+            openBtn.style.display = 'inline-block';
             openBtn.dataset.url = code.data;
-            showToast("تم استخراج رمز QR من الصورة ✅");
+            showToast('تم استخراج رمز QR من الصورة ✅');
           } else {
-            qrResult.textContent = "لم يتم التعرف على QR في الصورة.";
-            openBtn.style.display = "none";
+            qrResult.textContent = 'لم يتم التعرف على QR في الصورة.';
+            openBtn.style.display = 'none';
           }
         };
         img.src = reader.result;
       };
       reader.readAsDataURL(file);
     }
-
-    function openQR() {
-      const url = document.getElementById("openQR").dataset.url;
-      if (url.startsWith("http")) window.open(url, "_blank");
-      else showToast("محتوى QR: " + url);
+    function openQR(){
+      const url = document.getElementById('openQR').dataset.url;
+      if(url && url.startsWith('http')) window.open(url,'_blank');
+      else showToast('محتوى QR: ' + (url||''));
     }
+
+    /******************************
+     * مزامنة تطبيق الإعدادات (تأكيد و إعادة ضبط)
+     ******************************/
+    function applySettingsUI(){
+      // حفظ الإعدادات وتطبيقها فورًا (المعاينة موجودة داخل الواجهة).
+      saveSettings();
+      showToast('تم تأكيد الإعدادات');
+      closeSettingsUI();
+      // إن كان هناك محتوى حالياً في الحقل، نعيد توليد QR لنعكس الإعدادات فورًا
+      const currentText = document.getElementById('qrInput').value.trim();
+      if(currentText) generateQR();
+    }
+
+    function resetSettingsUI(){
+      settings = Object.assign({}, DEFAULTS);
+      saveSettings();
+      // إعادة تحديث UI الحالية (إذا مفتوح)
+      if(modal.style.display === 'block') bindUIEvents(modal);
+      if(sidebar.style.display === 'block') {
+        sidebar.innerHTML = modal.innerHTML;
+        bindUIEvents(sidebar);
+      }
+      updatePreview(document);
+      showToast('تم إعادة ضبط الإعدادات إلى الافتراضي');
+    }
+
+    /******************************
+     * عند تحميل الصفحة: مزامنة المعاينة والقيم
+     ******************************/
+    // إعداد أزرار اختيار العرض الأساسي قبل فتح الإعدادات
+    (function init(){
+      // إذا كانت طريقة العرض سابقًا هي sidebar، نحتفظ بها حتى يتم فتح الإعدادات لاحقًا
+      // عند بدء الصفحة، نهيئ زر المعاينة داخل الـ modal
+      // مزامنة عناصر في صفحة الإعدادات الأساسية (modal)
+      // نحتاج لربط العناصر الآن حتى يعمل الزر الأولي للعرض
+      // ربط أزرار displayType في modal
+      const dispBtns = modal.querySelectorAll('#displayTypeBtns button');
+      dispBtns.forEach(b=> b.onclick = ()=>{
+        modal.querySelectorAll('#displayTypeBtns button').forEach(x=>x.classList.remove('active'));
+        b.classList.add('active');
+        settings.displayType = b.dataset.value;
+      });
+
+      const styleBtns = modal.querySelectorAll('#styleBtns button');
+      styleBtns.forEach(b=> b.onclick = ()=>{
+        modal.querySelectorAll('#styleBtns button').forEach(x=>x.classList.remove('active'));
+        b.classList.add('active');
+        settings.style = b.dataset.value;
+      });
+
+      // size slider
+      const sizeRange = modal.querySelector('#sizeRange');
+      const sizeVal = modal.querySelector('#sizeVal');
+      sizeRange.oninput = ()=>{ sizeVal.textContent = sizeRange.value; settings.size = parseInt(sizeRange.value); updatePreview(modal); };
+
+      // other controls will be set when opening (bindUIEvents called)
+      // اعرض القيم الحالية في الـ modal بسرعة
+      // عند الفتح، bindUIEvents يقوم بتحميل القيم
+      // تهيئة المعاينة مرة واحدة
+      updatePreview(modal);
+
+      // ضبط القيم الافتراضية في الواجهة الصغيرة
+      // إعداد زر حفظ تلقائي عند الخروج
+      window.addEventListener('beforeunload', ()=> saveSettings() );
+    })();
+
+    /******************************
+     * PWA: manifest & simple service worker (ديناميكي)
+     * هذا يسمح للمتصفح بعرض خيار \"إضافة إلى الشاشة الرئيسية\" عند دعمه
+     ******************************/
+    (function createManifestAndSW(){
+      try{
+        const ICON_SRC = '/icon.png';
+        const manifest = {
+          name: 'TheraQR',
+          short_name: 'TheraQR',
+          start_url: '.',
+          display: 'standalone',
+          background_color: '#ffffff',
+          theme_color: '#00aaff',
+          icons: [
+            { src: ICON_SRC, sizes: '192x192', type: 'image/png' },
+            { src: ICON_SRC, sizes: '512x512', type: 'image/png' }
+          ]
+        };
+        const manifestBlob = new Blob([JSON.stringify(manifest)], {type:'application/json'});
+        const manifestURL = URL.createObjectURL(manifestBlob);
+        const link = document.createElement('link'); link.rel='manifest'; link.href = manifestURL;
+        document.head.appendChild(link);
+      }catch(e){ console.warn('manifest create failed', e); }
+
+      if('serviceWorker' in navigator){
+        const swCode = `
+self.addEventListener('install', e=>{
+  self.skipWaiting();
+  e.waitUntil(
+    caches.open('theraqr-v1').then(c=>c.addAll(['./','/','/index.html','/icon.png','/logo.png']).catch(()=>{}))
+  );
+});
+self.addEventListener('fetch', e=>{
+  e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)).catch(()=>{}));
+});
+`;
+        try{
+          const swBlob = new Blob([swCode], {type:'text/javascript'});
+          const swURL = URL.createObjectURL(swBlob);
+          navigator.serviceWorker.register(swURL).then(()=>console.log('sw registered')).catch(e=>console.warn('sw reg failed', e));
+        }catch(e){ console.warn('sw create failed', e); }
+      }
+    })();
+
   </script>
 </body>
 </html>
