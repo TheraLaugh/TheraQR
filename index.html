@@ -148,6 +148,7 @@
 
     #cameraButton { background-color: var(--green); color: black; font-weight: bold; }
     #openQR { background-color: var(--gold); color: black; font-weight: bold; }
+#copyQRBtn { background-color: var(--gold); color: black; font-weight: bold; margin-inline-start: 8px; }
 
     #qrCanvas {
       margin-top: 10px;
@@ -354,7 +355,10 @@
     <div class="card-content">
       <input type="file" accept="image/*" onchange="readQRFromImage(event)" />
       <p id="qrResult"></p>
-      <button id="openQR" style="display:none;" onclick="openQR()">فتح</button>
+<div style="display:inline-block; vertical-align:middle;">
+  <button id="openQR" style="display:none;" onclick="openQR()">فتح</button>
+  <button id="copyQRBtn" style="display:none;" onclick="copyQR()">نسخ</button>
+</div>
     </div>
   </div>
 
@@ -850,14 +854,23 @@
           const qrResult = document.getElementById('qrResult');
           const openBtn = document.getElementById('openQR');
           if(code){
-            qrResult.textContent = code.data;
-            openBtn.style.display = 'inline-block';
-            openBtn.dataset.url = code.data;
-            showToast('تم استخراج رمز QR من الصورة ✅');
-          } else {
-            qrResult.textContent = 'لم يتم التعرف على QR في الصورة.';
-            openBtn.style.display = 'none';
-          }
+  const data = code.data;
+  qrResult.textContent = data;
+
+  openBtn.style.display = 'inline-block';
+  openBtn.dataset.url = data;
+
+  const copyBtn = document.getElementById('copyQRBtn');
+  copyBtn.style.display = 'inline-block';
+  copyBtn.dataset.url = data;
+
+  showToast('تم استخراج رمز QR من الصورة ✅');
+} else {
+  qrResult.textContent = 'لم يتم التعرف على QR في الصورة.';
+  openBtn.style.display = 'none';
+  const copyBtn = document.getElementById('copyQRBtn');
+  copyBtn.style.display = 'none';
+}
         };
         img.src = reader.result;
       };
@@ -868,6 +881,39 @@
       if(url && url.startsWith('http')) window.open(url,'_blank');
       else showToast('محتوى QR: ' + (url||''));
     }
+
+function copyQR(){
+  const copyBtn = document.getElementById('copyQRBtn');
+  const openBtn = document.getElementById('openQR');
+  const qrResult = document.getElementById('qrResult');
+
+  const raw = copyBtn?.dataset?.url || openBtn?.dataset?.url || qrResult?.textContent || '';
+  const textToCopy = raw.trim();
+  if(!textToCopy){
+    showToast('لا يوجد محتوى للنسخ');
+    return;
+  }
+
+  copyBtn.disabled = true;
+  copyBtn.style.opacity = '0.6';
+
+  navigator.clipboard.writeText(textToCopy).then(()=>{
+    showToast('تم النسخ إلى الحافظة');
+    const oldText = copyBtn.textContent;
+    copyBtn.textContent = 'تم النسخ';
+    copyBtn.style.backgroundColor = '#9be294';
+    setTimeout(()=>{
+      copyBtn.textContent = oldText;
+      copyBtn.style.backgroundColor = 'gold';
+      copyBtn.disabled = false;
+      copyBtn.style.opacity = '1';
+    }, 1400);
+  }).catch(()=>{
+    showToast('فشل النسخ');
+    copyBtn.disabled = false;
+    copyBtn.style.opacity = '1';
+  });
+}
 
     /******************************
      * مزامنة تطبيق الإعدادات (تأكيد و إعادة ضبط)
