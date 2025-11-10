@@ -16,6 +16,7 @@
       --blue: #00aaff;
       --green: #00ff99;
       --gold: gold;
+      --purple: #8a2be2;
       --panel-bg: rgba(255,255,255,0.98);
       --panel-bg-dark: rgba(20,20,20,0.98);
     }
@@ -66,8 +67,9 @@
     .blue{ background-color:#1a1a1a; box-shadow:inset 5px 0 0 var(--blue); }
     .green{ background-color:#1a1a1a; box-shadow:inset 5px 0 0 var(--green); }
     .gold{ background-color:#1a1a1a; box-shadow:inset 5px 0 0 var(--gold); }
+    .purple{ background-color:#1a1a1a; box-shadow:inset 5px 0 0 var(--purple); }
 
-    input[type="text"], input[type="file"], select, input[type="number"] { width:80%; padding:10px; margin:10px 0; border-radius:5px; border:none; outline:none; }
+    input[type="text"], input[type="file"], select, input[type="number"] { width:80%; padding:10px; margin:10px 0; border-radius:5px; border:none; outline:none; direction:ltr; }
     button{ padding:10px 20px; background-color:var(--blue); color:white; border:none; border-radius:8px; cursor:pointer; transition:0.3s; }
     button:hover{ opacity:0.9; }
 
@@ -108,6 +110,9 @@
     .radio-group{ display:flex; gap:8px; justify-content:flex-start; align-items:center; direction:ltr; }
     .radio-group button{ padding:8px 12px; border-radius:8px; background:#eee; color:#111; border:none; cursor:pointer; }
     .radio-group button.active{ background:var(--blue); color:white; }
+
+    .color-row{ display:flex; gap:8px; align-items:center; justify-content:center; margin-top:6px; }
+    .color-input{ width:36px; height:28px; border-radius:6px; border:1px solid #ccc; cursor:pointer; }
 
     @media (max-width:520px) {
       .settings-modal{ width:95%; padding:12px; }
@@ -266,6 +271,98 @@
       <div style="display:inline-block; vertical-align:middle;">
         <button id="openQR" style="display:none;" onclick="openQR()">فتح</button>
         <button id="copyQRBtn" style="display:none;" onclick="copyQR()">نسخ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- البطاقة البنفسجية الجديدة: إنشاء 2 أو 3 أكواد متداخلة -->
+  <div class="card purple" onclick="expandCard(this)">
+    <button class="close-btn" onclick="closeCard(event, this)"><i class="fa-solid fa-xmark"></i></button>
+    <h2><i class="fa-solid fa-layer-group"></i> إنشاء أكواد متداخلة</h2>
+    <div class="card-content" id="nestedCardContent">
+      <div style="text-align:right; width:100%;">
+        <div style="margin-bottom:8px;">اختر عدد الأكواد:</div>
+        <div class="radio-group" style="justify-content:flex-start;">
+          <button id="nestedCount2Btn" class="active" data-count="2">2</button>
+          <button id="nestedCount3Btn" data-count="3">3</button>
+        </div>
+
+        <hr style="margin:12px 0; border-color:rgba(255,255,255,0.06);">
+
+        <div id="nestedFields" style="text-align:right;">
+
+          <!-- الخارجي -->
+          <div style="margin-top:10px;">
+            <div style="font-weight:bold;">QR الخارجي (Outer)</div>
+            <input type="text" id="outerText" placeholder="نص أو رابط للكود الخارجي" />
+            <div class="color-row">
+              <div style="text-align:left;">مقدمة/عيون</div>
+              <input id="outerColorDark" class="color-input" type="color" value="#000000" />
+              <input id="outerColorDarkHex" type="text" value="#000000" style="width:90px;" />
+              <div style="width:18px;"></div>
+              <div style="text-align:left;">خلفية</div>
+              <input id="outerColorLight" class="color-input" type="color" value="#ffffff" />
+              <input id="outerColorLightHex" type="text" value="#ffffff" style="width:90px;" />
+            </div>
+          </div>
+
+          <!-- المتوسط (يظهر عند اختيار 3) -->
+          <div id="middleBlock" style="margin-top:12px; display:none;">
+            <div style="font-weight:bold;">QR المتوسط (Middle)</div>
+            <input type="text" id="middleText" placeholder="نص أو رابط للكود المتوسط" />
+            <div class="color-row">
+              <div style="text-align:left;">مقدمة/عيون</div>
+              <input id="middleColorDark" class="color-input" type="color" value="#000000" />
+              <input id="middleColorDarkHex" type="text" value="#000000" style="width:90px;" />
+              <div style="width:18px;"></div>
+              <div style="text-align:left;">خلفية</div>
+              <input id="middleColorLight" class="color-input" type="color" value="#ffffff" />
+              <input id="middleColorLightHex" type="text" value="#ffffff" style="width:90px;" />
+            </div>
+          </div>
+
+          <!-- الداخلي -->
+          <div style="margin-top:12px;">
+            <div style="font-weight:bold;">QR الداخلي (Inner)</div>
+            <input type="text" id="innerText" placeholder="نص أو رابط للكود الداخلي" />
+            <div class="color-row">
+              <div style="text-align:left;">مقدمة/عيون</div>
+              <input id="innerColorDark" class="color-input" type="color" value="#000000" />
+              <input id="innerColorDarkHex" type="text" value="#000000" style="width:90px;" />
+              <div style="width:18px;"></div>
+              <div style="text-align:left;">خلفية</div>
+              <input id="innerColorLight" class="color-input" type="color" value="#ffffff" />
+              <input id="innerColorLightHex" type="text" value="#ffffff" style="width:90px;" />
+            </div>
+          </div>
+
+          <hr style="margin:12px 0; border-color:rgba(255,255,255,0.06);">
+
+          <!-- التدريجة / السلايدر -->
+          <div style="display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap;">
+            <div style="text-align:center;">
+              <div style="font-size:13px;">حجم الشعار الداخلي (%)</div>
+              <input id="innerScale" type="range" min="10" max="50" value="20" />
+              <div><span id="innerScaleVal">20</span>%</div>
+            </div>
+
+            <div id="middleScaleWrapper" style="text-align:center; display:none;">
+              <div style="font-size:13px;">حجم الشعار المتوسط (%)</div>
+              <input id="middleScale" type="range" min="10" max="50" value="20" />
+              <div><span id="middleScaleVal">20</span>%</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px; text-align:center;">
+            <button id="generateNestedBtn" style="background-color:var(--purple);">توليد المتداخلات</button>
+            <button id="downloadNestedBtn" style="background-color:var(--purple); display:none; margin-inline-start:8px;">تنزيل النتيجة</button>
+          </div>
+
+          <div style="margin-top:12px;">
+            <canvas id="nestedPreviewCanvas" width="300" height="300" style="max-width:320px; background:white; border-radius:10px;"></canvas>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
@@ -456,6 +553,7 @@
     function applySettingsToUI(){ const m = modal; if(!m) return; }
 
     /******************************
+قسم 2 من 2 — انسخ والصق الجزء الثاني كاملًا (أكمل من هنا حتى نهاية المستند):
      * معاينة حية ورسم QR حول الشعار (تضمين حقيقي)
      ******************************/
     const PREVIEW_CANVAS = document.getElementById('previewCanvas');
@@ -694,8 +792,6 @@
 
     /******************************
      * قارئ الكاميرا وقراءة كل أنواع الرموز حتى مع شعار في الوسط
-     * - نحاول BarcodeDetector (كل الأنواع المدعومة) أولاً
-     * - نجرّب jsQR على الإطار الكامل، ثم على نسخ مع زيادة التباين، والنسخ المقطوعة حول الحواف
      ******************************/
     let cameraStream = null;
     const hasBarcodeDetector = ('BarcodeDetector' in window);
@@ -1082,6 +1178,170 @@ self.addEventListener('fetch', e=>{
       }
     })();
 
+    /******************************
+     * كود البطاقة البنفسجية: سلوك الواجهة والتوليد المتداخل
+     ******************************/
+    (function bindNestedUI(){
+      // عناصر
+      const btn2 = document.getElementById('nestedCount2Btn');
+      const btn3 = document.getElementById('nestedCount3Btn');
+      const middleBlock = document.getElementById('middleBlock');
+      const middleScaleWrapper = document.getElementById('middleScaleWrapper');
+      const innerScale = document.getElementById('innerScale');
+      const innerScaleVal = document.getElementById('innerScaleVal');
+      const middleScale = document.getElementById('middleScale');
+      const middleScaleVal = document.getElementById('middleScaleVal');
+      const generateBtn = document.getElementById('generateNestedBtn');
+      const downloadBtn = document.getElementById('downloadNestedBtn');
+      const previewCanvas = document.getElementById('nestedPreviewCanvas');
+
+      // color hex sync helpers
+      function syncColorInputs(colorInput, hexInput){
+        colorInput.addEventListener('input', ()=>{ hexInput.value = colorInput.value; });
+        hexInput.addEventListener('change', ()=>{ try{ colorInput.value = hexInput.value; }catch(e){} });
+      }
+
+      // bind color inputs for outer/middle/inner
+      syncColorInputs(document.getElementById('outerColorDark'), document.getElementById('outerColorDarkHex'));
+      syncColorInputs(document.getElementById('outerColorLight'), document.getElementById('outerColorLightHex'));
+      syncColorInputs(document.getElementById('innerColorDark'), document.getElementById('innerColorDarkHex'));
+      syncColorInputs(document.getElementById('innerColorLight'), document.getElementById('innerColorLightHex'));
+      syncColorInputs(document.getElementById('middleColorDark'), document.getElementById('middleColorDarkHex'));
+      syncColorInputs(document.getElementById('middleColorLight'), document.getElementById('middleColorLightHex'));
+
+      // number of codes toggle
+      function setCount(n){
+        if(n===2){
+          btn2.classList.add('active'); btn3.classList.remove('active');
+          middleBlock.style.display = 'none';
+          middleScaleWrapper.style.display = 'none';
+        } else {
+          btn2.classList.remove('active'); btn3.classList.add('active');
+          middleBlock.style.display = 'block';
+          middleScaleWrapper.style.display = 'block';
+        }
+      }
+      btn2.onclick = ()=> setCount(2);
+      btn3.onclick = ()=> setCount(3);
+      setCount(2);
+
+      // sliders
+      innerScale.oninput = ()=> innerScaleVal.textContent = innerScale.value;
+      middleScale.oninput = ()=> middleScaleVal.textContent = middleScale.value;
+
+      // generation logic
+      generateBtn.onclick = async function(e){
+        e.stopPropagation();
+        showToast('جارٍ توليد الأكواد بدقة 1000px ...');
+        // read values
+        const count = btn3.classList.contains('active') ? 3 : 2;
+        const outerText = document.getElementById('outerText').value.trim() || 'https://theraqr.example';
+        const middleText = document.getElementById('middleText').value.trim() || 'https://theraqr.example';
+        const innerText = document.getElementById('innerText').value.trim() || 'https://theraqr.example';
+
+        // colors
+        const outerDark = document.getElementById('outerColorDark').value;
+        const outerLight = document.getElementById('outerColorLight').value;
+        const outerEyes = document.getElementById('outerColorDark').value;
+
+        const innerDark = document.getElementById('innerColorDark').value;
+        const innerLight = document.getElementById('innerColorLight').value;
+        const innerEyes = document.getElementById('innerColorDark').value;
+
+        const middleDark = document.getElementById('middleColorDark').value;
+        const middleLight = document.getElementById('middleColorLight').value;
+        const middleEyes = document.getElementById('middleColorDark').value;
+
+        // scales (percent)
+        const innerPct = parseInt(innerScale.value,10)/100; // e.g., 0.2
+        const middlePct = parseInt(middleScale.value,10)/100;
+
+        // fixed high settings for this feature
+        const targetSize = 1000; // highest requested
+        const ecc = 'H'; // highest correction
+        const style = 'classic'; // reuse user's style? we'll use selected global style if present
+        const mode = 'embed'; // use embed to ensure no modules under center
+
+        // helper: create canvas and draw QR at 1000px using drawQROnCanvas but override ecc=H and embedGapScale later
+        function createCanvas(size){
+          const c = document.createElement('canvas');
+          c.width = size; c.height = size;
+          return c;
+        }
+
+        // Step 1: generate inner QR (highest resolution)
+        const innerCanvas = createCanvas(targetSize);
+        await drawQROnCanvas(innerCanvas, innerText, targetSize, style, {
+          colorDark: innerDark,
+          colorLight: innerLight,
+          colorEyes: innerEyes,
+          ecc: ecc,
+          centerImageData: null,
+          centerImageMode: 'overlay',
+          embedGapScale: 0.20
+        }, false);
+
+        // Step 2: if count===3, create middle QR embedding inner as its center image
+        let middleCanvas = null;
+        if(count === 3){
+          middleCanvas = createCanvas(targetSize);
+          // use inner as embedded image: but scale inner image to middlePct of middleCanvas
+          // To ensure embed gap corresponds to proportion, compute embedGapScale = middlePct (approx)
+          const innerDataURL = innerCanvas.toDataURL();
+          await drawQROnCanvas(middleCanvas, middleText, targetSize, style, {
+            colorDark: middleDark,
+            colorLight: middleLight,
+            colorEyes: middleEyes,
+            ecc: ecc,
+            centerImageData: innerDataURL,
+            centerImageMode: 'embed',
+            embedGapScale: middlePct // use percentage for gap
+          }, false);
+        }
+
+        // Step 3: create outer QR embedding either inner (if count==2) or middle (if count==3)
+        const outerCanvas = createCanvas(targetSize);
+        const embedSourceDataURL = (count===3 && middleCanvas) ? middleCanvas.toDataURL() : innerCanvas.toDataURL();
+        // Determine embedGapScale for outer so that embedded image size equals innerPct when counted relative to outer:
+        // If count==2, innerPct defines inner size relative to outer. If count==3, innerPct defines inner size relative to middle, and middlePct relative to outer.
+        // For outer we need to set embedGapScale to (count===2 ? innerPct : middlePct)
+        const outerEmbedScale = (count===2) ? innerPct : middlePct;
+        await drawQROnCanvas(outerCanvas, outerText, targetSize, style, {
+          colorDark: outerDark,
+          colorLight: outerLight,
+          colorEyes: outerEyes,
+          ecc: ecc,
+          centerImageData: embedSourceDataURL,
+          centerImageMode: 'embed',
+          embedGapScale: outerEmbedScale
+        }, false);
+
+        // If count==3, we already produced middleCanvas which itself contains inner embedded.
+        // If count==2, the outerCanvas has innerCanvas embedded.
+
+        // Show composite preview scaled to preview canvas size
+        const previewSize = Math.min(previewCanvas.width, previewCanvas.height);
+        const pctx = previewCanvas.getContext('2d');
+        pctx.clearRect(0,0,previewCanvas.width, previewCanvas.height);
+        // draw outerCanvas scaled down
+        pctx.drawImage(outerCanvas, 0, 0, previewCanvas.width, previewCanvas.height);
+
+        // enable download button and set dataset url
+        downloadBtn.style.display = 'inline-block';
+        downloadBtn.onclick = function(ev){
+          ev.stopPropagation();
+          const link = document.createElement('a');
+          link.href = outerCanvas.toDataURL('image/png');
+          link.download = 'nested_qr.png';
+          link.click();
+        };
+
+        showToast('تم توليد الأكواد المتداخلة بدقة 1000px ✅');
+      };
+
+    })();
+
+    // بقية الكود الموجود سابقًا (service worker، إلخ) يبقى كما هو.
   </script>
 </body>
 </html>
