@@ -46,42 +46,22 @@
       z-index: 1000;
     }
     @media (prefers-color-scheme: dark) { .fixed-header{ background-color:#1a1a1a; color:white; } }
-    .menu-button {
-      position:absolute; right:15px; font-size:26px; cursor:pointer; color:var(--blue);
-      transition:0.3s; background:transparent; border:none; padding:4px;
-    }
+    .menu-button { position:absolute; right:15px; font-size:26px; cursor:pointer; color:var(--blue); transition:0.3s; }
     .menu-button:hover{ transform:scale(1.2); }
-    .menu-button:focus-visible { outline:2px solid var(--blue); border-radius:6px; }
     .site-name { font-size:26px; font-weight:bold; color:var(--blue); text-align:center; }
 
-    .side-menu {
-      display:none; position:absolute; top:70px; right:10px; background-color:#1a1a1a;
-      border:1px solid var(--blue); border-radius:8px; padding:10px; z-index:999;
-      animation:fadeIn 0.2s ease;
-    }
+    .side-menu { display:none; position:absolute; top:70px; right:10px; background-color:#1a1a1a; border:1px solid var(--blue); border-radius:8px; padding:10px; z-index:999; animation:fadeIn 0.2s ease; }
     @keyframes fadeIn { from{opacity:0; transform:scale(.98);} to{opacity:1; transform:scale(1);} }
     .side-menu ul{ margin:0; padding:0; }
-    .side-menu li{
-      list-style:none; padding:10px; color:white; cursor:pointer;
-      border-bottom:1px solid #333; text-align:right;
-    }
-    .side-menu li:last-child { border-bottom:none; }
+    .side-menu li{ list-style:none; padding:10px; color:white; cursor:pointer; border-bottom:1px solid #333; text-align:right; }
     .side-menu li:hover{ background-color:var(--blue); }
-    .side-menu li:focus-visible { background-color:var(--blue); outline:none; }
 
-    .card {
-      position:relative; margin:20px auto; width:90%; max-width:500px; border-radius:15px;
-      padding:15px; transition:all 0.3s ease; cursor:pointer; color:white; text-align:center;
-    }
+    .card { position:relative; margin:20px auto; width:90%; max-width:500px; border-radius:15px; padding:15px; transition:all 0.3s ease; cursor:pointer; color:white; text-align:center; }
     .card h2{ margin-top:0; }
     .card-content{ display:none; margin-top:15px; animation:fadeIn 0.3s ease; }
     .card.expanded .card-content{ display:block; }
-    .close-btn{
-      position:absolute; top:10px; left:15px; font-size:18px; background:transparent;
-      border:none; color:#fff; cursor:pointer; display:none; transition:0.2s;
-    }
+    .close-btn{ position:absolute; top:10px; left:15px; font-size:18px; background:transparent; border:none; color:#fff; cursor:pointer; display:none; transition:0.2s; }
     .close-btn:hover{ color:var(--blue); transform:scale(1.2); }
-    .close-btn:focus-visible { outline:2px solid var(--blue); border-radius:4px; }
     .card.expanded .close-btn{ display:block; }
 
     .blue{ background-color:#1a1a1a; box-shadow:inset 5px 0 0 var(--blue); }
@@ -89,158 +69,50 @@
     .gold{ background-color:#1a1a1a; box-shadow:inset 5px 0 0 var(--gold); }
     .purple{ background-color:#1a1a1a; box-shadow:inset 5px 0 0 var(--purple); }
 
-    input[type="text"], input[type="file"], select, input[type="number"] {
-      width:80%; padding:10px; margin:10px 0; border-radius:5px;
-      border:none; outline:none; direction:ltr;
-    }
-    button{
-      padding:10px 20px; background-color:var(--blue); color:white;
-      border:none; border-radius:8px; cursor:pointer; transition:0.3s;
-    }
+    input[type="text"], input[type="file"], select, input[type="number"] { width:80%; padding:10px; margin:10px 0; border-radius:5px; border:none; outline:none; direction:ltr; }
+    button{ padding:10px 20px; background-color:var(--blue); color:white; border:none; border-radius:8px; cursor:pointer; transition:0.3s; }
     button:hover{ opacity:0.9; }
-    button:disabled { cursor:not-allowed; opacity:0.6; }
 
     #cameraButton{ background-color:var(--green); color:black; font-weight:bold; }
     #openQR{ background-color:var(--gold); color:black; font-weight:bold; }
     #copyQRBtn{ background-color:var(--gold); color:black; font-weight:bold; margin-inline-start:8px; }
     #cameraOpenBtn{ background-color:var(--gold); color:black; font-weight:bold; margin-inline-start:8px; }
-    #cameraCopyBtn{ background-color:var(--gold); color:black; font-weight:bold; margin-inline-start:8px; }
-    #cameraShowBtn{ background-color:var(--gold); color:black; font-weight:bold; margin-inline-start:8px; }
 
     #qrCanvas{ margin-top:10px; max-width:320px; width:100%; border-radius:10px; box-shadow:0 0 12px rgba(0,0,0,0.45); background:white; }
 
-    #fullscreenView{
-      display:none; position:fixed; top:0; right:0; bottom:0; left:0;
-      background-color:rgba(0,0,0,0.95); justify-content:center; align-items:center;
-      z-index:9999; animation:fadeIn 0.2s ease;
-    }
+    #fullscreenView{ display:none; position:fixed; top:0; right:0; bottom:0; left:0; background-color:rgba(0,0,0,0.95); justify-content:center; align-items:center; z-index:9999; animation:fadeIn 0.2s ease; }
     #fullscreenView img{ max-width:85%; border-radius:15px; }
-    #backArrow{
-      position:absolute; top:15px; right:20px; font-size:24px; color:white;
-      cursor:pointer; background:transparent; border:none;
-    }
-    #backArrow:focus-visible { outline:2px solid white; border-radius:4px; }
+    #backArrow{ position:absolute; top:15px; right:20px; font-size:24px; color:white; cursor:pointer; }
 
     footer{ margin:40px 0 20px; font-size:14px; color:#888; }
 
-    .toast{
-      position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
-      background-color:#333; color:white; padding:12px 20px; border-radius:8px;
-      opacity:0; transition:opacity 0.3s, bottom 0.3s; z-index:10000;
-      pointer-events:none; max-width:90%; text-align:center;
-    }
+    .toast{ position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background-color:#333; color:white; padding:12px 20px; border-radius:8px; opacity:0; transition:opacity 0.3s, bottom 0.3s; z-index:10000; }
     .toast.show{ opacity:1; bottom:40px; }
 
-    .settings-overlay{ display:none; position:fixed; inset:0; z-index:10001; background:rgba(0,0,0,0.35); }
+    .settings-overlay{ display:none; position:fixed; inset:0; z-index:10001; }
     .settings-modal{
-      position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
-      width:90%; max-width:600px; border-radius:12px; padding:12px; z-index:10002;
-      box-shadow:0 20px 50px rgba(0,0,0,0.4); background:var(--panel-bg);
-      max-height:85vh; overflow:auto;
+      position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); width:90%; max-width:600px;
+      border-radius:12px; padding:12px; z-index:10002; box-shadow:0 20px 50px rgba(0,0,0,0.4);
+      background:var(--panel-bg); max-height:85vh; overflow:auto;
     }
     @media (prefers-color-scheme: dark) { .settings-modal{ background:var(--panel-bg-dark); } }
-    .settings-sidebar{
-      position:fixed; top:70px; right:10px; width:320px; max-width:90%;
-      height:calc(100% - 90px); border-radius:12px; padding:14px; z-index:10002;
-      box-shadow:0 20px 50px rgba(0,0,0,0.4); background:var(--panel-bg); overflow:auto;
-    }
-    @media (prefers-color-scheme: dark) { .settings-sidebar{ background:var(--panel-bg-dark); } }
+    .settings-sidebar{ position:fixed; top:70px; right:10px; width:320px; max-width:90%; height:calc(100% - 90px); border-radius:12px; padding:14px; z-index:10002; box-shadow:0 20px 50px rgba(0,0,0,0.4); background:var(--panel-bg); overflow:auto; }
 
-    .settings-row{
-      display:flex; gap:8px; align-items:center; justify-content:space-between;
-      margin:10px 0; flex-wrap:wrap;
-    }
+    .settings-row{ display:flex; gap:8px; align-items:center; justify-content:space-between; margin:10px 0; flex-wrap:wrap; }
     .settings-row label{ flex:1; text-align:right; font-size:14px; }
     .settings-controls{ flex:1; text-align:left; }
-    .settings-actions{
-      display:flex; gap:10px; justify-content:center; margin-top:12px;
-      position:sticky; bottom:0; background:transparent; padding-top:8px;
-    }
+    .settings-actions{ display:flex; gap:10px; justify-content:center; margin-top:12px; position:sticky; bottom:0; background:transparent; padding-top:8px; }
 
-    .preview-box{
-      display:flex; gap:12px; align-items:center; justify-content:center;
-      margin-top:10px; padding:8px; border-radius:8px; background:rgba(0,0,0,0.03);
-    }
-    .small-preview{
-      width:120px; height:120px; border-radius:8px; overflow:hidden;
-      display:flex; align-items:center; justify-content:center;
-      background:white; box-shadow:0 4px 10px rgba(0,0,0,0.08);
-    }
+    .preview-box{ display:flex; gap:12px; align-items:center; justify-content:center; margin-top:10px; padding:8px; border-radius:8px; background:rgba(0,0,0,0.03); }
+    .small-preview{ width:120px; height:120px; border-radius:8px; overflow:hidden; display:flex; align-items:center; justify-content:center; background:white; box-shadow:0 4px 10px rgba(0,0,0,0.08); }
     @media (prefers-color-scheme: dark) { .small-preview{ background:#111; } }
 
-    .radio-group{ display:flex; gap:8px; justify-content:flex-start; align-items:center; direction:ltr; flex-wrap:wrap; }
-    .radio-group button{
-      padding:8px 12px; border-radius:8px; background:#eee; color:#111;
-      border:none; cursor:pointer;
-    }
+    .radio-group{ display:flex; gap:8px; justify-content:flex-start; align-items:center; direction:ltr; }
+    .radio-group button{ padding:8px 12px; border-radius:8px; background:#eee; color:#111; border:none; cursor:pointer; }
     .radio-group button.active{ background:var(--blue); color:white; }
 
-    .color-row{ display:flex; gap:8px; align-items:center; justify-content:center; margin-top:6px; flex-wrap:wrap; }
+    .color-row{ display:flex; gap:8px; align-items:center; justify-content:center; margin-top:6px; }
     .color-input{ width:36px; height:28px; border-radius:6px; border:1px solid #ccc; cursor:pointer; }
-
-    /* nested reader styles */
-    .nested-reader-block{
-      background:rgba(138,43,226,0.08);
-      border:1px dashed var(--purple);
-      border-radius:10px;
-      padding:12px;
-      text-align:right;
-      margin-bottom:14px;
-    }
-    .nested-reader-block h3{
-      margin:0 0 6px 0;
-      color:var(--purple);
-      font-size:16px;
-      display:flex;
-      align-items:center;
-      gap:6px;
-    }
-    .nested-reader-block .hint{
-      font-size:12px;
-      color:#aaa;
-      margin:0 0 8px 0;
-      line-height:1.5;
-    }
-    .nested-reader-block .btn-row{
-      display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
-      margin:6px 0;
-    }
-    .nested-reader-block .file-label{
-      display:inline-block; padding:10px 18px; border-radius:8px;
-      background:var(--purple); color:white; cursor:pointer;
-      transition:0.3s; font-weight:bold;
-    }
-    .nested-reader-block .file-label:hover{ opacity:0.9; }
-    .nested-reader-block input[type="file"]{ display:none; }
-
-    #nestedReaderVideo{ width:100%; max-width:320px; border-radius:10px; background:black; }
-
-    .nested-result-item{
-      background:rgba(138,43,226,0.15);
-      border:1px solid var(--purple);
-      border-radius:8px;
-      padding:10px;
-      margin:8px 0;
-      text-align:right;
-    }
-    .nested-result-item .layer-label{
-      font-size:12px; color:var(--purple); font-weight:bold; margin-bottom:6px;
-      display:flex; align-items:center; gap:6px;
-    }
-    .nested-result-item .layer-text{
-      word-break:break-all; color:#fff; direction:ltr; text-align:left;
-      font-size:13px; background:rgba(0,0,0,0.4); padding:8px;
-      border-radius:6px; margin:4px 0; font-family:monospace; max-height:100px; overflow:auto;
-    }
-    .nested-result-item .layer-actions{
-      display:flex; gap:6px; justify-content:flex-end; margin-top:4px;
-    }
-    .nested-result-item .layer-actions button{
-      padding:5px 12px; font-size:12px; background:var(--purple);
-    }
-    .nested-empty-msg{
-      color:#888; font-size:13px; padding:8px; text-align:center;
-    }
 
     @media (max-width:520px) {
       .settings-modal{ width:95%; padding:12px; }
@@ -249,31 +121,29 @@
   </style>
 </head>
 <body>
-  <header class="fixed-header">
-    <button class="menu-button" aria-label="فتح القائمة" onclick="toggleMenu()">
-      <i class="fas fa-bars" aria-hidden="true"></i>
-    </button>
+  <div class="fixed-header">
+    <div class="menu-button" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
     <div class="site-name">TheraQR</div>
-  </header>
+  </div>
 
-  <nav id="sideMenu" class="side-menu" aria-label="القائمة الجانبية">
+  <div id="sideMenu" class="side-menu">
     <ul>
-      <li tabindex="0" onclick="window.location.href='policy.html'">سياسة وخصوصية الموقع</li>
-      <li tabindex="0" onclick="openSettingsUI()">إعدادات</li>
+      <li onclick="window.location.href='policy.html'">سياسة وخصوصية الموقع</li>
+      <li onclick="openSettingsUI()">إعدادات</li>
     </ul>
-  </nav>
+  </div>
 
   <div id="settingsOverlay" class="settings-overlay" onclick="overlayClick(event)"></div>
 
-  <div id="settingsModal" class="settings-modal" style="display:none;" role="dialog" aria-modal="true" aria-label="إعدادات رمز QR">
+  <div id="settingsModal" class="settings-modal" style="display:none;">
     <h3 style="margin-top:0;">إعدادات رمز QR</h3>
 
     <div class="settings-row">
       <label>طريقة عرض لوحة الإعدادات</label>
       <div class="settings-controls">
-        <div class="radio-group" data-set="displayTypeBtns">
-          <button type="button" data-value="modal">نافذة منبثقة</button>
-          <button type="button" data-value="sidebar">شريط جانبي</button>
+        <div class="radio-group" id="displayTypeBtns">
+          <button data-value="modal">نافذة منبثقة</button>
+          <button data-value="sidebar">شريط جانبي</button>
         </div>
       </div>
     </div>
@@ -283,24 +153,24 @@
     <div class="settings-row">
       <label>نمط الـ QR</label>
       <div class="settings-controls">
-        <div class="radio-group" data-set="styleBtns">
-          <button type="button" data-value="classic">🔳 كلاسيكي</button>
-          <button type="button" data-value="dot">⚪ نقاط</button>
-          <button type="button" data-value="hybrid">🟣 هجين</button>
+        <div class="radio-group" id="styleBtns">
+          <button data-value="classic">🔳 كلاسيكي</button>
+          <button data-value="dot">⚪ نقاط</button>
+          <button data-value="hybrid">🟣 هجين</button>
         </div>
       </div>
     </div>
 
     <div class="settings-row">
-      <label for="sizeRangeGlobal">حجم الكود (px)</label>
-      <div class="settings-controls"><input id="sizeRangeGlobal" data-set="sizeRange" type="range" min="100" max="1000" value="300"></div>
-      <div style="min-width:48px;text-align:left;"><span data-set="sizeVal">300</span>px</div>
+      <label for="sizeRange">حجم الكود (px)</label>
+      <div class="settings-controls"><input id="sizeRange" type="range" min="100" max="1000" value="300"></div>
+      <div style="min-width:48px;text-align:left;"><span id="sizeVal">300</span>px</div>
     </div>
 
     <div class="settings-row">
-      <label for="eccSelectGlobal">تصحيح الخطأ</label>
+      <label for="eccSelect">تصحيح الخطأ</label>
       <div class="settings-controls">
-        <select id="eccSelectGlobal" data-set="eccSelect">
+        <select id="eccSelect">
           <option value="L">L - منخفض</option>
           <option value="M">M - متوسط</option>
           <option value="Q">Q - مرتفع</option>
@@ -310,31 +180,31 @@
     </div>
 
     <div class="settings-row">
-      <label for="colorDarkGlobal">لون المقدمة (Hex)</label>
-      <div class="settings-controls"><input id="colorDarkGlobal" data-set="colorDark" type="text" value="#000000"></div>
+      <label for="colorDark">لون المقدمة (Hex)</label>
+      <div class="settings-controls"><input id="colorDark" type="text" value="#000000"></div>
     </div>
 
     <div class="settings-row">
-      <label for="colorLightGlobal">خلفية (Hex)</label>
-      <div class="settings-controls"><input id="colorLightGlobal" data-set="colorLight" type="text" value="#ffffff"></div>
+      <label for="colorLight">خلفية (Hex)</label>
+      <div class="settings-controls"><input id="colorLight" type="text" value="#ffffff"></div>
     </div>
 
     <div class="settings-row">
-      <label for="colorEyesGlobal">لون عيون QR (Hex)</label>
-      <div class="settings-controls"><input id="colorEyesGlobal" data-set="colorEyes" type="text" value="#000000"></div>
+      <label for="colorEyes">لون عيون QR (Hex)</label>
+      <div class="settings-controls"><input id="colorEyes" type="text" value="#000000"></div>
     </div>
 
     <div class="settings-row">
-      <label for="centerImageUploadGlobal">رفع صورة للمركز</label>
-      <div class="settings-controls"><input id="centerImageUploadGlobal" data-set="centerImageUpload" type="file" accept="image/png,image/jpeg,image/webp,image/gif"></div>
+      <label for="centerImageUpload">رفع صورة للمركز</label>
+      <div class="settings-controls"><input id="centerImageUpload" type="file" accept="image/*"></div>
     </div>
 
     <div class="settings-row">
       <label>وضع الصورة في المركز</label>
       <div class="settings-controls">
-        <div class="radio-group" data-set="centerModeBtns">
-          <button type="button" data-value="overlay">فوق QR</button>
-          <button type="button" data-value="embed">تضمين داخل QR</button>
+        <div class="radio-group" id="centerModeBtns">
+          <button data-value="overlay">فوق QR</button>
+          <button data-value="embed">تضمين داخل QR</button>
         </div>
       </div>
     </div>
@@ -342,31 +212,30 @@
     <div class="preview-box">
       <div style="flex:1;text-align:right;">
         <div style="font-size:13px;color:gray;">معاينة حية</div>
-        <div style="font-size:12px;color:#666;">المحتوى في المعاينة: <span data-set="previewText">https://theraqr.example</span></div>
+        <div style="font-size:12px;color:#666;">المحتوى في المعاينة: <span id="previewText">https://theraqr.example</span></div>
       </div>
-      <div class="small-preview"><canvas data-set="previewCanvas" width="120" height="120"></canvas></div>
+      <div class="small-preview"><canvas id="previewCanvas" width="120" height="120"></canvas></div>
     </div>
 
     <div class="settings-actions">
-      <button type="button" data-action="apply">✅ تأكيد</button>
-      <button type="button" data-action="reset">🔄 إعادة ضبط</button>
-      <button type="button" data-action="close">❌ إغلاق</button>
+      <button onclick="applySettingsUI()">✅ تأكيد</button>
+      <button onclick="resetSettingsUI()">🔄 إعادة ضبط</button>
+      <button onclick="closeSettingsUI()">❌ إغلاق</button>
     </div>
   </div>
 
-  <div id="settingsSidebar" class="settings-sidebar" style="display:none;" role="dialog" aria-modal="true" aria-label="إعدادات رمز QR"></div>
+  <div id="settingsSidebar" class="settings-sidebar" style="display:none;"></div>
 
-  <!-- بطاقة الإنشاء -->
   <div class="card blue" onclick="expandCard(this)">
-    <button class="close-btn" onclick="closeCard(event, this)" aria-label="إغلاق البطاقة"><i class="fa-solid fa-xmark"></i></button>
+    <button class="close-btn" onclick="closeCard(event, this)"><i class="fa-solid fa-xmark"></i></button>
     <h2><i class="fa-solid fa-qrcode"></i> إنشاء QR</h2>
     <div class="card-content">
-      <input type="text" id="qrInput" placeholder="اكتب هنا النص أو الرابط" aria-label="النص أو الرابط" />
+      <input type="text" id="qrInput" placeholder="اكتب هنا النص أو الرابط" />
       <br>
       <button onclick="generateQR()">توليد</button>
       <div id="qrOptions" style="display:none;">
         <br>
-        <canvas id="qrCanvas" aria-label="رمز QR المولّد"></canvas>
+        <canvas id="qrCanvas"></canvas>
         <br>
         <button onclick="downloadQR()">تنزيل</button>
         <button onclick="showFullscreen()">عرض</button>
@@ -374,9 +243,8 @@
     </div>
   </div>
 
-  <!-- بطاقة الكاميرا -->
   <div class="card green" onclick="expandCard(this)">
-    <button class="close-btn" onclick="closeCard(event, this)" aria-label="إغلاق البطاقة"><i class="fa-solid fa-xmark"></i></button>
+    <button class="close-btn" onclick="closeCard(event, this)"><i class="fa-solid fa-xmark"></i></button>
     <h2><i class="fa-solid fa-camera"></i> قراءة QR بالكاميرا</h2>
     <div class="card-content">
       <button id="cameraButton" onclick="toggleCamera()">📷 فتح الكاميرا</button>
@@ -394,12 +262,11 @@
     </div>
   </div>
 
-  <!-- بطاقة قراءة من صورة -->
   <div class="card gold" onclick="expandCard(this)">
-    <button class="close-btn" onclick="closeCard(event, this)" aria-label="إغلاق البطاقة"><i class="fa-solid fa-xmark"></i></button>
+    <button class="close-btn" onclick="closeCard(event, this)"><i class="fa-solid fa-xmark"></i></button>
     <h2><i class="fa-solid fa-image"></i> قراءة QR من صورة</h2>
     <div class="card-content">
-      <input type="file" accept="image/*" onchange="readQRFromImage(event)" aria-label="اختر صورة" />
+      <input type="file" accept="image/*" onchange="readQRFromImage(event)" />
       <p id="qrResult"></p>
       <div style="display:inline-block; vertical-align:middle;">
         <button id="openQR" style="display:none;" onclick="openQR()">فتح</button>
@@ -408,51 +275,22 @@
     </div>
   </div>
 
-  <!-- بطاقة الأكواد المتداخلة -->
+  <!-- البطاقة البنفسجية الجديدة: إنشاء 2 أو 3 أكواد متداخلة -->
   <div class="card purple" onclick="expandCard(this)">
-    <button class="close-btn" onclick="closeCard(event, this)" aria-label="إغلاق البطاقة"><i class="fa-solid fa-xmark"></i></button>
-    <h2><i class="fa-solid fa-layer-group"></i> أكواد QR متداخلة</h2>
-    <div class="card-content">
-
-      <!-- ═══════════════ قسم القراءة (جديد) ═══════════════ -->
-      <div class="nested-reader-block" onclick="event.stopPropagation()">
-        <h3><i class="fa-solid fa-magnifying-glass"></i> قراءة الأكواد المتداخلة</h3>
-        <p class="hint">يستخرج جميع الطبقات تلقائيًا (الخارجي / المتوسط / الداخلي) من صورة أو كاميرا.</p>
-
-        <div class="btn-row">
-          <label class="file-label" for="nestedReaderFile">🖼️ رفع صورة</label>
-          <input type="file" id="nestedReaderFile" accept="image/*" />
-          <button type="button" id="nestedReaderCamBtn" style="background-color:var(--purple);">📷 فتح الكاميرا</button>
-        </div>
-
-        <div id="nestedReaderCamContainer" style="display:none; margin-top:10px; text-align:center;">
-          <video id="nestedReaderVideo" autoplay playsinline muted></video>
-          <div style="margin-top:8px;">
-            <button type="button" id="nestedReaderStopBtn" style="background-color:#c0392b;">⛔ إيقاف الكاميرا</button>
-          </div>
-        </div>
-
-        <div id="nestedReaderResults" style="margin-top:10px;">
-          <div class="nested-empty-msg">لم يتم تحليل أي صورة بعد.</div>
-        </div>
-      </div>
-
-      <hr style="border-color:rgba(255,255,255,0.1); margin:14px 0;">
-
-      <!-- ═══════════════ قسم الإنشاء (الموجود سابقًا) ═══════════════ -->
+    <button class="close-btn" onclick="closeCard(event, this)"><i class="fa-solid fa-xmark"></i></button>
+    <h2><i class="fa-solid fa-layer-group"></i> إنشاء أكواد متداخلة</h2>
+    <div class="card-content" id="nestedCardContent">
       <div style="text-align:right; width:100%;">
-        <div style="margin-bottom:8px; font-weight:bold; color:var(--purple); font-size:16px;">
-          <i class="fa-solid fa-wand-magic-sparkles"></i> توليد الأكواد المتداخلة
-        </div>
         <div style="margin-bottom:8px;">اختر عدد الأكواد:</div>
         <div class="radio-group" style="justify-content:flex-start;">
-          <button type="button" id="nestedCount2Btn" class="active" data-count="2">2</button>
-          <button type="button" id="nestedCount3Btn" data-count="3">3</button>
+          <button id="nestedCount2Btn" class="active" data-count="2">2</button>
+          <button id="nestedCount3Btn" data-count="3">3</button>
         </div>
 
         <hr style="margin:12px 0; border-color:rgba(255,255,255,0.06);">
 
         <div id="nestedFields" style="text-align:right;">
+
           <!-- الخارجي -->
           <div style="margin-top:10px;">
             <div style="font-weight:bold;">QR الخارجي (Outer)</div>
@@ -468,7 +306,7 @@
             </div>
           </div>
 
-          <!-- المتوسط -->
+          <!-- المتوسط (يظهر عند اختيار 3) -->
           <div id="middleBlock" style="margin-top:12px; display:none;">
             <div style="font-weight:bold;">QR المتوسط (Middle)</div>
             <input type="text" id="middleText" placeholder="نص أو رابط للكود المتوسط" />
@@ -500,12 +338,14 @@
 
           <hr style="margin:12px 0; border-color:rgba(255,255,255,0.06);">
 
+          <!-- التدريجة / السلايدر -->
           <div style="display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap;">
             <div style="text-align:center;">
               <div style="font-size:13px;">حجم الشعار الداخلي (%)</div>
               <input id="innerScale" type="range" min="10" max="50" value="20" />
               <div><span id="innerScaleVal">20</span>%</div>
             </div>
+
             <div id="middleScaleWrapper" style="text-align:center; display:none;">
               <div style="font-size:13px;">حجم الشعار المتوسط (%)</div>
               <input id="middleScale" type="range" min="10" max="50" value="20" />
@@ -514,24 +354,25 @@
           </div>
 
           <div style="margin-top:12px; text-align:center;">
-            <button type="button" id="generateNestedBtn" style="background-color:var(--purple);">توليد المتداخلات</button>
-            <button type="button" id="downloadNestedBtn" style="background-color:var(--purple); display:none; margin-inline-start:8px;">تنزيل النتيجة</button>
+            <button id="generateNestedBtn" style="background-color:var(--purple);">توليد المتداخلات</button>
+            <button id="downloadNestedBtn" style="background-color:var(--purple); display:none; margin-inline-start:8px;">تنزيل النتيجة</button>
           </div>
 
           <div style="margin-top:12px;">
-            <canvas id="nestedPreviewCanvas" width="300" height="300" style="max-width:320px; background:white; border-radius:10px;" aria-label="معاينة الأكواد المتداخلة"></canvas>
+            <canvas id="nestedPreviewCanvas" width="300" height="300" style="max-width:320px; background:white; border-radius:10px;"></canvas>
           </div>
+
         </div>
       </div>
     </div>
   </div>
 
-  <div id="fullscreenView" role="dialog" aria-modal="true">
-    <button id="backArrow" onclick="hideFullscreen()" aria-label="رجوع"><i class="fa-solid fa-arrow-right"></i></button>
-    <img id="fullscreenQR" alt="عرض رمز QR" />
+  <div id="fullscreenView">
+    <div id="backArrow" onclick="hideFullscreen()"><i class="fa-solid fa-arrow-right"></i></div>
+    <img id="fullscreenQR" />
   </div>
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="toast" class="toast"></div>
 
   <footer>
     <p>© 2025 جميع الحقوق محفوظة لـ TheraLaugh</p>
@@ -540,1252 +381,967 @@
   <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
   <script>
-  /* ============================================================
-   * TheraQR — منطق التطبيق
-   * ============================================================ */
+    /******************************
+     * إعدادات افتراضية وتحميل حفظ
+     ******************************/
+    const DEFAULTS = {
+      displayType: 'modal',
+      style: 'classic',
+      size: 300,
+      ecc: 'M',
+      colorDark: '#000000',
+      colorLight: '#ffffff',
+      colorEyes: '#000000',
+      centerImageData: null,
+      centerImageMode: 'overlay', // overlay | embed
+      previewText: 'https://theraqr.example'
+    };
 
-  'use strict';
+    let settings = loadSettings();
 
-  /******************************
-   * 1. الإعدادات الافتراضية والحفظ
-   ******************************/
-  const DEFAULTS = {
-    displayType: 'modal',
-    style: 'classic',
-    size: 300,
-    ecc: 'M',
-    colorDark: '#000000',
-    colorLight: '#ffffff',
-    colorEyes: '#000000',
-    centerImageData: null,
-    centerImageMode: 'overlay',
-    previewText: 'https://theraqr.example'
-  };
+    function loadSettings(){
+      try {
+        const raw = localStorage.getItem('theraqr_settings_v2');
+        if(raw) {
+          const s = JSON.parse(raw);
+          return Object.assign({}, DEFAULTS, s);
+        }
+      } catch(e){}
+      return Object.assign({}, DEFAULTS);
+    }
+    function saveSettings(){
+      try { localStorage.setItem('theraqr_settings_v2', JSON.stringify(settings)); } catch(e){}
+    }
 
-  let settings = loadSettings();
+    /******************************
+     * واجهة عادية
+     ******************************/
+    const sideMenu = document.getElementById('sideMenu');
+    function toggleMenu(){ sideMenu.style.display = sideMenu.style.display === 'block' ? 'none' : 'block'; }
 
-  function loadSettings(){
-    try {
-      const raw = localStorage.getItem('theraqr_settings_v3');
-      if (raw) return Object.assign({}, DEFAULTS, JSON.parse(raw));
-    } catch (e) { /* ignore corrupted storage */ }
-    return Object.assign({}, DEFAULTS);
-  }
-  function saveSettings(){
-    try { localStorage.setItem('theraqr_settings_v3', JSON.stringify(settings)); } catch (e) {}
-  }
+    function expandCard(card) {
+      if (card.classList.contains("expanded")) return;
+      document.querySelectorAll(".card").forEach(c => c.classList.remove("expanded"));
+      card.classList.add("expanded");
+    }
+    function closeCard(event, btn) { event.stopPropagation(); btn.closest(".card").classList.remove("expanded"); }
 
-  /******************************
-   * 2. أدوات مساعدة
-   ******************************/
-  const $ = (root, sel) => (root || document).querySelector(sel);
-  const $$ = (root, sel) => Array.from((root || document).querySelectorAll(sel));
+    function showToast(msg){
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(()=>t.classList.remove('show'),3000);
+    }
 
-  function showToast(msg){
-    const t = document.getElementById('toast');
-    if (!t) return;
-    t.textContent = msg;
-    t.classList.add('show');
-    clearTimeout(showToast._timer);
-    showToast._timer = setTimeout(() => t.classList.remove('show'), 2800);
-  }
+    /******************************
+     * إعدادات UI
+     ******************************/
+    const overlay = document.getElementById('settingsOverlay');
+    const modal = document.getElementById('settingsModal');
+    const sidebar = document.getElementById('settingsSidebar');
 
-  function isValidHttpUrl(str){
-    try {
-      const u = new URL(str);
-      return u.protocol === 'http:' || u.protocol === 'https:';
-    } catch { return false; }
-  }
-
-  function safeOpen(url){
-    if (!isValidHttpUrl(url)) { showToast('المحتوى ليس رابطًا صالحًا: ' + url); return; }
-    window.open(url, '_blank', 'noopener,noreferrer');
-  }
-
-  async function safeCopy(text, btn){
-    if (!text) { showToast('لا يوجد محتوى للنسخ'); return; }
-    const oldDisabled = btn ? btn.disabled : false;
-    if (btn) btn.disabled = true;
-    try {
-      await navigator.clipboard.writeText(text);
-      showToast('تم النسخ إلى الحافظة');
-      if (btn) {
-        const old = btn.textContent;
-        btn.textContent = 'تم النسخ';
-        btn.style.backgroundColor = '#9be294';
-        setTimeout(() => {
-          btn.textContent = old;
-          btn.style.backgroundColor = '';
-          btn.disabled = false;
-        }, 1400);
+    function openSettingsUI(){
+      applySettingsToUI();
+      if(settings.displayType === 'sidebar'){
+        sidebar.innerHTML = modal.innerHTML;
+        document.body.appendChild(sidebar);
+        sidebar.style.display = 'block';
+        overlay.style.display = 'block';
+        overlay.onclick = () => closeSettingsUI();
+        bindUIEvents(sidebar);
+        const up = sidebar.querySelector('#centerImageUpload');
+        if(up) up.onchange = (e)=> handleCenterUpload(e, sidebar);
+      } else {
+        modal.style.display = 'block';
+        overlay.style.display = 'block';
+        bindUIEvents(modal);
       }
-    } catch (e) {
-      showToast('فشل النسخ');
-      if (btn) btn.disabled = oldDisabled;
     }
-  }
 
-  function roundRect(ctx, x, y, width, height, radius){
-    if (width < 2 * radius) radius = width / 2;
-    if (height < 2 * radius) radius = height / 2;
-    ctx.beginPath();
-    ctx.moveTo(x + radius, y);
-    ctx.arcTo(x + width, y, x + width, y + height, radius);
-    ctx.arcTo(x + width, y + height, x, y + height, radius);
-    ctx.arcTo(x, y + height, x, y, radius);
-    ctx.arcTo(x, y, x + width, y, radius);
-    ctx.closePath();
-  }
-
-  // تحويل لرمادي + تقوية التباين
-  function enhanceImageData(imageData, contrast = 1.3, brightness = 0){
-    const w = imageData.width, h = imageData.height;
-    const out = new ImageData(w, h);
-    const d = imageData.data, od = out.data;
-    const factor = (259 * (contrast + 255)) / (255 * (259 - contrast));
-    for (let i = 0; i < d.length; i += 4){
-      let v = 0.299 * d[i] + 0.587 * d[i+1] + 0.114 * d[i+2];
-      v = factor * (v - 128) + 128 + brightness;
-      v = v < 0 ? 0 : v > 255 ? 255 : v;
-      od[i] = od[i+1] = od[i+2] = v;
-      od[i+3] = 255;
-    }
-    return out;
-  }
-
-  // تدوير ImageData
-  function rotateImageData(imageData, deg){
-    const src = document.createElement('canvas');
-    src.width = imageData.width; src.height = imageData.height;
-    src.getContext('2d').putImageData(imageData, 0, 0);
-    const dst = document.createElement('canvas');
-    if (deg === 90 || deg === 270){
-      dst.width = imageData.height; dst.height = imageData.width;
-    } else {
-      dst.width = imageData.width; dst.height = imageData.height;
-    }
-    const ctx = dst.getContext('2d');
-    ctx.translate(dst.width / 2, dst.height / 2);
-    ctx.rotate(deg * Math.PI / 180);
-    ctx.drawImage(src, -imageData.width / 2, -imageData.height / 2);
-    return ctx.getImageData(0, 0, dst.width, dst.height);
-  }
-
-  // محاولة فك تشفير شاملة (jsQR + تحسين + دوران)
-  function robustDecode(imageData){
-    let code = jsQR(imageData.data, imageData.width, imageData.height);
-    if (code) return code;
-    const enh = enhanceImageData(imageData, 1.4, 10);
-    code = jsQR(enh.data, enh.width, enh.height);
-    if (code) return code;
-    for (const deg of [90, 180, 270]){
-      const rot = rotateImageData(imageData, deg);
-      code = jsQR(rot.data, rot.width, rot.height);
-      if (code) return code;
-      const enhRot = enhanceImageData(rot, 1.3, 8);
-      code = jsQR(enhRot.data, enhRot.width, enhRot.height);
-      if (code) return code;
-    }
-    return null;
-  }
-
-  /******************************
-   * 3. القائمة والبطاقات
-   ******************************/
-  const sideMenu = document.getElementById('sideMenu');
-  function toggleMenu(){
-    sideMenu.style.display = sideMenu.style.display === 'block' ? 'none' : 'block';
-  }
-  document.addEventListener('click', (e) => {
-    if (!sideMenu || sideMenu.style.display !== 'block') return;
-    if (!sideMenu.contains(e.target) && !e.target.closest('.menu-button')) sideMenu.style.display = 'none';
-  });
-
-  function expandCard(card){
-    if (card.classList.contains('expanded')) return;
-    document.querySelectorAll('.card').forEach(c => c.classList.remove('expanded'));
-    card.classList.add('expanded');
-  }
-  function closeCard(event, btn){
-    event.stopPropagation();
-    const card = btn.closest('.card');
-    if (card) card.classList.remove('expanded');
-    // إيقاف أي كاميرا نشطة عند إغلاق بطاقة الكاميرا
-    if (card && card.classList.contains('green')) stopCameraIfActive();
-    if (card && card.classList.contains('purple')) stopNestedReaderCamera();
-  }
-
-  // إغلاق عند ضغط Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key !== 'Escape') return;
-    hideFullscreen();
-    closeSettingsUI();
-    sideMenu.style.display = 'none';
-    stopCameraIfActive();
-    stopNestedReaderCamera();
-  });
-
-  /******************************
-   * 4. لوحة الإعدادات (Modal / Sidebar)
-   ******************************/
-  const overlay = document.getElementById('settingsOverlay');
-  const modal = document.getElementById('settingsModal');
-  const sidebar = document.getElementById('settingsSidebar');
-
-  function openSettingsUI(){
-    const target = settings.displayType === 'sidebar' ? sidebar : modal;
-    if (target === sidebar){
-      sidebar.innerHTML = modal.innerHTML;
-      sidebar.style.display = 'block';
+    function closeSettingsUI(){
       modal.style.display = 'none';
-    } else {
-      modal.style.display = 'block';
       sidebar.style.display = 'none';
+      overlay.style.display = 'none';
+      overlay.onclick = null;
       sidebar.innerHTML = '';
     }
-    overlay.style.display = 'block';
-    bindSettingsUI(target);
-  }
+    function overlayClick(e){ if(e.target === overlay) closeSettingsUI(); }
 
-  function closeSettingsUI(){
-    modal.style.display = 'none';
-    sidebar.style.display = 'none';
-    sidebar.innerHTML = '';
-    overlay.style.display = 'none';
-  }
+    function bindUIEvents(container){
+      const dispBtns = container.querySelectorAll('#displayTypeBtns button');
+      dispBtns.forEach(b=>{
+        b.classList.toggle('active', b.dataset.value === settings.displayType);
+        b.onclick = ()=>{
+          container.querySelectorAll('#displayTypeBtns button').forEach(x=>x.classList.remove('active'));
+          b.classList.add('active');
+          settings.displayType = b.dataset.value;
+        };
+      });
 
-  function overlayClick(e){
-    if (e.target === overlay) closeSettingsUI();
-  }
+      const styleBtns = container.querySelectorAll('#styleBtns button');
+      styleBtns.forEach(b=>{
+        b.classList.toggle('active', b.dataset.value === settings.style);
+        b.onclick = ()=>{
+          container.querySelectorAll('#styleBtns button').forEach(x=>x.classList.remove('active'));
+          b.classList.add('active');
+          settings.style = b.dataset.value;
+          updatePreview(container);
+        };
+      });
 
-  function updatePreview(container){
-    const pc = $('[data-set="previewCanvas"]', container);
-    if (!pc) return;
-    drawQROnCanvas(pc, settings.previewText || DEFAULTS.previewText, 120, settings.style, {
-      colorDark: settings.colorDark,
-      colorLight: settings.colorLight,
-      colorEyes: settings.colorEyes,
-      ecc: settings.ecc,
-      centerImageData: settings.centerImageData,
-      centerImageMode: settings.centerImageMode,
-      embedGapScale: 0.28
-    });
-  }
-
-  function bindSettingsUI(container){
-    // displayType
-    $$('[data-set="displayTypeBtns"] button', container).forEach(b => {
-      b.classList.toggle('active', b.dataset.value === settings.displayType);
-      b.onclick = () => {
-        $$('[data-set="displayTypeBtns"] button', container).forEach(x => x.classList.remove('active'));
-        b.classList.add('active');
-        settings.displayType = b.dataset.value;
-      };
-    });
-
-    // style
-    $$('[data-set="styleBtns"] button', container).forEach(b => {
-      b.classList.toggle('active', b.dataset.value === settings.style);
-      b.onclick = () => {
-        $$('[data-set="styleBtns"] button', container).forEach(x => x.classList.remove('active'));
-        b.classList.add('active');
-        settings.style = b.dataset.value;
-        updatePreview(container);
-      };
-    });
-
-    // size
-    const sizeRange = $('[data-set="sizeRange"]', container);
-    const sizeVal = $('[data-set="sizeVal"]', container);
-    if (sizeRange && sizeVal){
+      const sizeRange = container.querySelector('#sizeRange');
+      const sizeVal = container.querySelector('#sizeVal');
       sizeRange.value = settings.size;
       sizeVal.textContent = settings.size;
-      sizeRange.oninput = () => {
-        sizeVal.textContent = sizeRange.value;
-        settings.size = parseInt(sizeRange.value, 10);
-        updatePreview(container);
-      };
-    }
+      sizeRange.oninput = ()=>{ sizeVal.textContent = sizeRange.value; settings.size = parseInt(sizeRange.value); updatePreview(container); };
 
-    // ecc
-    const eccSelect = $('[data-set="eccSelect"]', container);
-    if (eccSelect){
+      const eccSelect = container.querySelector('#eccSelect');
       eccSelect.value = settings.ecc;
-      eccSelect.onchange = () => {
-        settings.ecc = eccSelect.value;
-        updatePreview(container);
-      };
-    }
+      eccSelect.onchange = ()=>{ settings.ecc = eccSelect.value; updatePreview(container); };
 
-    // colors
-    const colorDark = $('[data-set="colorDark"]', container);
-    const colorLight = $('[data-set="colorLight"]', container);
-    const colorEyes = $('[data-set="colorEyes"]', container);
-    if (colorDark){
+      const colorDark = container.querySelector('#colorDark');
+      const colorLight = container.querySelector('#colorLight');
+      const colorEyes = container.querySelector('#colorEyes');
       colorDark.value = settings.colorDark;
-      colorDark.onchange = () => { settings.colorDark = colorDark.value; updatePreview(container); };
-    }
-    if (colorLight){
       colorLight.value = settings.colorLight;
-      colorLight.onchange = () => { settings.colorLight = colorLight.value; updatePreview(container); };
-    }
-    if (colorEyes){
       colorEyes.value = settings.colorEyes || settings.colorDark;
-      colorEyes.onchange = () => { settings.colorEyes = colorEyes.value; updatePreview(container); };
-    }
+      colorDark.onchange = ()=>{ settings.colorDark = colorDark.value; updatePreview(container); };
+      colorLight.onchange = ()=>{ settings.colorLight = colorLight.value; updatePreview(container); };
+      colorEyes.onchange = ()=>{ settings.colorEyes = colorEyes.value; updatePreview(container); };
 
-    // center image upload
-    const upload = $('[data-set="centerImageUpload"]', container);
-    if (upload){
-      upload.onchange = (e) => handleCenterUpload(e, container);
-    }
+      const centerUpload = container.querySelector('#centerImageUpload');
+      if(centerUpload) centerUpload.onchange = (e)=> handleCenterUpload(e, container);
 
-    // center mode
-    $$('[data-set="centerModeBtns"] button', container).forEach(b => {
-      b.classList.toggle('active', b.dataset.value === settings.centerImageMode);
-      b.onclick = () => {
-        $$('[data-set="centerModeBtns"] button', container).forEach(x => x.classList.remove('active'));
-        b.classList.add('active');
-        settings.centerImageMode = b.dataset.value;
-        updatePreview(container);
-      };
-    });
-
-    // preview text
-    const pt = $('[data-set="previewText"]', container);
-    if (pt) pt.textContent = settings.previewText || DEFAULTS.previewText;
-
-    // action buttons
-    $$('[data-action="apply"]', container).forEach(b => b.onclick = () => {
-      saveSettings();
-      showToast('تم تأكيد الإعدادات');
-      const currentText = document.getElementById('qrInput').value.trim();
-      closeSettingsUI();
-      if (currentText) generateQR();
-    });
-    $$('[data-action="reset"]', container).forEach(b => b.onclick = () => {
-      settings = Object.assign({}, DEFAULTS);
-      saveSettings();
-      bindSettingsUI(container);
-      updatePreview(container);
-      showToast('تم إعادة ضبط الإعدادات إلى الافتراضي');
-    });
-    $$('[data-action="close"]', container).forEach(b => b.onclick = () => closeSettingsUI());
-
-    updatePreview(container);
-  }
-
-  function handleCenterUpload(event, container){
-    const file = event.target.files[0];
-    if (!file) return;
-    // تحقق من النوع
-    const allowed = ['image/png','image/jpeg','image/webp','image/gif'];
-    if (!allowed.includes(file.type)){
-      showToast('نوع الصورة غير مدعوم (استخدم PNG/JPG/WEBP/GIF)');
-      event.target.value = '';
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = () => {
-      settings.centerImageData = reader.result;
-      saveSettings();
-      updatePreview(container);
-      showToast('تم رفع صورة المركز وحفظها');
-    };
-    reader.onerror = () => showToast('فشل قراءة الصورة');
-    reader.readAsDataURL(file);
-  }
-
-  /******************************
-   * 5. محرك رسم QR (النواة)
-   ******************************/
-  /**
-   * يرسم رمز QR على canvas. عند centerImageMode==='embed' تُحجز فجوة مركزية
-   * لا تُرسم فوقها أي موديولات، ثم تُرسم الصورة داخل الفجوة.
-   */
-  async function drawQROnCanvas(canvas, text, size, mode, opts = {}){
-    canvas.width = size;
-    canvas.height = size;
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    const colorDark = opts.colorDark || settings.colorDark || '#000000';
-    const colorLight = opts.colorLight || settings.colorLight || '#ffffff';
-    const colorEyes = opts.colorEyes || settings.colorEyes || colorDark;
-    const ecc = opts.ecc || settings.ecc || 'M';
-    const centerImageData = opts.centerImageData || null;
-    const centerImageMode = opts.centerImageMode || settings.centerImageMode || 'overlay';
-    const embedGapScale = (typeof opts.embedGapScale === 'number') ? opts.embedGapScale : 0.20;
-
-    ctx.fillStyle = colorLight;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    try {
-      const qrm = QRCode.create(text, { errorCorrectionLevel: ecc });
-      const modules = qrm.modules;
-      if (!modules) throw new Error('no modules');
-
-      const moduleCount = modules.size;
-      const moduleSize = canvas.width / moduleCount;
-
-      // حساب الفجوة المركزية عند التضمين
-      let embedRect = null;
-      if (centerImageData && centerImageMode === 'embed'){
-        const gapW = Math.floor(canvas.width * embedGapScale);
-        const gapH = gapW;
-        const gapX = Math.floor((canvas.width - gapW) / 2);
-        const gapY = Math.floor((canvas.height - gapH) / 2);
-        const pad = Math.ceil(moduleSize * 0.5);
-        embedRect = {
-          x: gapX - pad, y: gapY - pad,
-          w: gapW + pad * 2, h: gapH + pad * 2,
-          innerX: gapX, innerY: gapY, innerW: gapW, innerH: gapH
+      const centerModeBtns = container.querySelectorAll('#centerModeBtns button');
+      centerModeBtns.forEach(b=>{
+        b.classList.toggle('active', b.dataset.value === settings.centerImageMode);
+        b.onclick = ()=>{
+          container.querySelectorAll('#centerModeBtns button').forEach(x=>x.classList.remove('active'));
+          b.classList.add('active');
+          settings.centerImageMode = b.dataset.value;
+          updatePreview(container);
         };
-      }
-
-      const n = moduleCount;
-      const isFinder = (r, c) => {
-        if (r <= 6 && c <= 6) return true;
-        if (r <= 6 && c >= n - 7) return true;
-        if (r >= n - 7 && c <= 6) return true;
-        return false;
-      };
-      const moduleInEmbed = (r, c) => {
-        if (!embedRect) return false;
-        const cx = c * moduleSize + moduleSize / 2;
-        const cy = r * moduleSize + moduleSize / 2;
-        return cx >= embedRect.x && cx <= embedRect.x + embedRect.w &&
-               cy >= embedRect.y && cy <= embedRect.y + embedRect.h;
-      };
-
-      for (let r = 0; r < n; r++){
-        for (let c = 0; c < n; c++){
-          if (!modules.get(c, r)) continue;
-          if (moduleInEmbed(r, c)) continue;
-
-          const x = Math.round(c * moduleSize);
-          const y = Math.round(r * moduleSize);
-          const drawSize = Math.ceil(moduleSize);
-
-          if (isFinder(r, c)){
-            ctx.fillStyle = colorEyes;
-            ctx.fillRect(x, y, drawSize, drawSize);
-            continue;
-          }
-
-          ctx.fillStyle = colorDark;
-          if (mode === 'classic'){
-            ctx.fillRect(x, y, drawSize, drawSize);
-          } else if (mode === 'dot'){
-            ctx.beginPath();
-            ctx.arc(x + moduleSize / 2, y + moduleSize / 2, moduleSize * 0.45, 0, Math.PI * 2);
-            ctx.fill();
-          } else if (mode === 'hybrid'){
-            ctx.beginPath();
-            ctx.arc(x + moduleSize / 2, y + moduleSize / 2, moduleSize * 0.35, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        }
-      }
-
-      // رسم الصورة المركزية
-      if (centerImageData){
-        if (centerImageMode === 'embed'){
-          await drawCenterEmbedded(canvas, centerImageData, embedRect, colorLight);
-        } else {
-          await drawCenterOverlay(canvas, centerImageData);
-        }
-      }
-
-    } catch (e){
-      console.error('drawQROnCanvas error', e);
-      try {
-        await QRCode.toCanvas(canvas, text, {
-          width: size, margin: 1,
-          color: { dark: colorDark, light: colorLight },
-          errorCorrectionLevel: ecc
-        });
-        if (centerImageData){
-          if (centerImageMode === 'embed'){
-            const gapW = Math.floor(size * embedGapScale);
-            const gapX = Math.floor((size - gapW) / 2);
-            const embedRect = { innerX: gapX, innerY: gapX, innerW: gapW, innerH: gapW };
-            await drawCenterEmbedded(canvas, centerImageData, embedRect, colorLight);
-          } else {
-            await drawCenterOverlay(canvas, centerImageData);
-          }
-        }
-      } catch (err){ console.error('fallback failed', err); }
-    }
-  }
-
-  function drawCenterOverlay(qrCanvas, dataURL, scale = 0.20){
-    return new Promise((resolve) => {
-      const ctx = qrCanvas.getContext('2d');
-      const size = qrCanvas.width;
-      const img = new Image();
-      img.onload = () => {
-        const w = Math.floor(size * scale);
-        let h = Math.floor(w * (img.height / img.width));
-        if (h > w) h = w;
-        ctx.drawImage(img, Math.floor((size - w) / 2), Math.floor((size - h) / 2), w, h);
-        resolve();
-      };
-      img.onerror = () => resolve();
-      img.src = dataURL;
-    });
-  }
-
-  function drawCenterEmbedded(qrCanvas, dataURL, embedRect, lightColor){
-    return new Promise((resolve) => {
-      const ctx = qrCanvas.getContext('2d');
-      const size = qrCanvas.width;
-      const img = new Image();
-      img.onload = () => {
-        const innerW = (embedRect && embedRect.innerW) ? embedRect.innerW : Math.floor(size * 0.20);
-        const innerH = (embedRect && embedRect.innerH) ? embedRect.innerH : innerW;
-        const innerX = (embedRect && embedRect.innerX) ? embedRect.innerX : Math.floor((size - innerW) / 2);
-        const innerY = (embedRect && embedRect.innerY) ? embedRect.innerY : Math.floor((size - innerH) / 2);
-
-        // خلفية نظيفة حول الصورة
-        const pad = Math.max(4, Math.floor(innerW * 0.06));
-        const radius = Math.max(6, Math.floor(innerW * 0.08));
-        ctx.save();
-        ctx.fillStyle = lightColor || '#ffffff';
-        roundRect(ctx, innerX - pad, innerY - pad, innerW + pad * 2, innerH + pad * 2, radius);
-        ctx.fill();
-        ctx.restore();
-
-        // حفظ نسبة الصورة
-        let w = innerW;
-        let h = Math.floor(w * (img.height / img.width));
-        if (h > innerH){ h = innerH; w = Math.floor(h * (img.width / img.height)); }
-        ctx.drawImage(img, innerX + Math.floor((innerW - w) / 2), innerY + Math.floor((innerH - h) / 2), w, h);
-        resolve();
-      };
-      img.onerror = () => resolve();
-      img.src = dataURL;
-    });
-  }
-
-  /******************************
-   * 6. توليد / تنزيل / عرض
-   ******************************/
-  const QR_CANVAS = document.getElementById('qrCanvas');
-
-  async function generateQR(){
-    const text = document.getElementById('qrInput').value.trim();
-    if (!text) return showToast('الرجاء إدخال نص أو رابط أولاً');
-    saveSettings();
-    document.getElementById('qrOptions').style.display = 'block';
-    const embedScale = (settings.centerImageMode === 'embed') ? 0.22 : 0.20;
-    await drawQROnCanvas(QR_CANVAS, text, settings.size, settings.style, {
-      colorDark: settings.colorDark,
-      colorLight: settings.colorLight,
-      colorEyes: settings.colorEyes,
-      ecc: settings.ecc,
-      centerImageData: settings.centerImageData,
-      centerImageMode: settings.centerImageMode,
-      embedGapScale: embedScale
-    });
-    document.getElementById('fullscreenQR').src = QR_CANVAS.toDataURL();
-    showToast('تم توليد رمز QR بنجاح ✅');
-  }
-
-  function downloadQR(){
-    const link = document.createElement('a');
-    link.href = QR_CANVAS.toDataURL('image/png');
-    link.download = 'theraqr.png';
-    link.click();
-  }
-  function showFullscreen(){
-    document.getElementById('fullscreenView').style.display = 'flex';
-  }
-  function hideFullscreen(){
-    document.getElementById('fullscreenView').style.display = 'none';
-  }
-
-  /******************************
-   * 7. قراءة QR بالكاميرا
-   ******************************/
-  let cameraStream = null;
-  let cameraRAF = null;
-
-  async function initBarcodeDetector(){
-    if (!('BarcodeDetector' in window)) return null;
-    try {
-      const supported = await BarcodeDetector.getSupportedFormats();
-      const wanted = ['qr_code', 'aztec', 'data_matrix', 'ean_13', 'ean_8', 'code_128', 'upc_e'];
-      const formats = wanted.filter(f => supported.includes(f));
-      if (!formats.length) return null;
-      return new BarcodeDetector({ formats });
-    } catch (e){
-      console.warn('BarcodeDetector init failed', e);
-      return null;
-    }
-  }
-  let barcodeDetectorPromise = initBarcodeDetector();
-
-  async function toggleCamera(){
-    if (cameraStream){ stopCameraIfActive(); return; }
-
-    const video = document.getElementById('cameraView');
-    const container = document.getElementById('cameraContainer');
-    const btn = document.getElementById('cameraButton');
-
-    try {
-      cameraStream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: { ideal: 'environment' } }
       });
-      video.srcObject = cameraStream;
-      container.style.display = 'block';
-      btn.textContent = '⛔ إيقاف الكاميرا';
-      showToast('تم فتح الكاميرا ✅');
 
-      const detector = await barcodeDetectorPromise;
-      if (detector) startBarcodeDetector(video, detector);
-      else startRobustScanner(video);
-    } catch (err){
-      console.error(err);
-      showToast('لم يتم منح إذن الكاميرا ❌');
-      cameraStream = null;
+      const previewTextEl = container.querySelector('#previewText');
+      if(previewTextEl) previewTextEl.textContent = settings.previewText || DEFAULTS.previewText;
+
+      updatePreview(container);
+
+      const buttons = container.querySelectorAll('.settings-actions button');
+      buttons.forEach(btn=>{
+        const txt = btn.textContent.trim();
+        if(txt.includes('تأكيد')) btn.onclick = ()=>{ applySettingsUI(); };
+        if(txt.includes('إعادة')) btn.onclick = ()=>{ resetSettingsUI(); };
+        if(txt.includes('إغلاق')) btn.onclick = ()=>{ closeSettingsUI(); };
+      });
     }
-  }
 
-  function stopCameraIfActive(){
-    if (cameraRAF){ cancelAnimationFrame(cameraRAF); cameraRAF = null; }
-    if (cameraStream){
-      cameraStream.getTracks().forEach(t => t.stop());
-      cameraStream = null;
-      const container = document.getElementById('cameraContainer');
-      const btn = document.getElementById('cameraButton');
-      if (container) container.style.display = 'none';
-      if (btn) btn.textContent = '📷 فتح الكاميرا';
+    function handleCenterUpload(event, container){
+      const file = event.target.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = function(){
+        settings.centerImageData = reader.result;
+        saveSettings();
+        updatePreview(container);
+        showToast('تم رفع صورة المركز وحفظها في الإعدادات');
+      };
+      reader.readAsDataURL(file);
     }
-  }
 
-  function startBarcodeDetector(video, detector){
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    async function detect(){
-      if (!cameraStream){ cameraRAF = null; return; }
-      if (video.readyState === video.HAVE_ENOUGH_DATA){
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        try {
-          const codes = await detector.detect(canvas);
-          if (codes && codes.length){
-            handleDetectedCode(codes[0].rawValue || codes[0].rawData);
-            stopCameraIfActive();
-            return;
-          }
-        } catch (e){ /* silent */ }
-      }
-      cameraRAF = requestAnimationFrame(detect);
-    }
-    detect();
-  }
+    function applySettingsToUI(){ const m = modal; if(!m) return; }
 
-  function startRobustScanner(video){
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    let frame = 0;
-    function scan(){
-      if (!cameraStream){ cameraRAF = null; return; }
-      frame++;
-      if (video.readyState === video.HAVE_ENOUGH_DATA && frame % 2 === 0){
-        // نُقلل الحمل: نعمل على إطار من كل 2
-        const targetW = Math.min(video.videoWidth, 480);
-        const scale = targetW / video.videoWidth;
-        canvas.width = targetW;
-        canvas.height = Math.round(video.videoHeight * scale);
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    /******************************
+قسم 2 من 2 — انسخ والصق الجزء الثاني كاملًا (أكمل من هنا حتى نهاية المستند):
+     * معاينة حية ورسم QR حول الشعار (تضمين حقيقي)
+     ******************************/
+    const PREVIEW_CANVAS = document.getElementById('previewCanvas');
 
-        try {
-          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-          const code = robustDecode(imageData);
-          if (code){
-            handleDetectedCode(code.data);
-            stopCameraIfActive();
-            return;
-          }
-        } catch (e){ /* silent */ }
-      }
-      cameraRAF = requestAnimationFrame(scan);
-    }
-    scan();
-  }
-
-  let lastDetectedData = '';
-
-  function handleDetectedCode(data){
-    showToast('تم التعرف على QR ✅');
-    lastDetectedData = String(data);
-    document.getElementById('cameraResultText').textContent = lastDetectedData;
-    document.getElementById('cameraResultArea').style.display = 'block';
-    document.getElementById('cameraOpenBtn').style.display = 'inline-block';
-    document.getElementById('cameraCopyBtn').style.display = 'inline-block';
-    document.getElementById('cameraShowBtn').style.display = 'inline-block';
-  }
-
-  function openDetected(){
-    if (!lastDetectedData) return showToast('لا يوجد محتوى للفتح');
-    if (isValidHttpUrl(lastDetectedData)) safeOpen(lastDetectedData);
-    else showToast('محتوى QR: ' + lastDetectedData);
-  }
-  function copyDetected(){
-    safeCopy(lastDetectedData, document.getElementById('cameraCopyBtn'));
-  }
-  async function showDetected(){
-    if (!lastDetectedData) return showToast('لا يوجد محتوى للعرض');
-    try {
-      await drawQROnCanvas(QR_CANVAS, lastDetectedData, settings.size, settings.style, {
+    function updatePreview(container){
+      const text = settings.previewText || DEFAULTS.previewText;
+      const pc = (container && container.querySelector('#previewCanvas')) || PREVIEW_CANVAS;
+      if(!pc) return;
+      // استخدم حجم معاينة مناسب
+      drawQROnCanvas(pc, text, Math.min(120, settings.size), settings.style, {
         colorDark: settings.colorDark,
         colorLight: settings.colorLight,
         colorEyes: settings.colorEyes,
         ecc: settings.ecc,
         centerImageData: settings.centerImageData,
         centerImageMode: settings.centerImageMode,
-        embedGapScale: settings.centerImageMode === 'embed' ? 0.22 : 0.20
-      });
-      document.getElementById('fullscreenQR').src = QR_CANVAS.toDataURL();
-      showFullscreen();
-    } catch (e){ console.error(e); showToast('فشل عرض المحتوى'); }
-  }
-
-  /******************************
-   * 8. قراءة QR من صورة
-   ******************************/
-  function readQRFromImage(event){
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const img = new Image();
-      img.onload = async () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        canvas.getContext('2d').drawImage(img, 0, 0);
-        const imageData = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
-
-        // BarcodeDetector إن توفّر
-        const detector = await barcodeDetectorPromise;
-        if (detector){
-          try {
-            const codes = await detector.detect(canvas);
-            if (codes && codes.length){
-              handleImageResult(codes[0].rawValue || codes[0].rawData);
-              return;
-            }
-          } catch (e){ /* continue */ }
-        }
-
-        const code = robustDecode(imageData);
-        if (code){ handleImageResult(code.data); return; }
-
-        document.getElementById('qrResult').textContent = 'لم يتم التعرف على QR في الصورة.';
-        document.getElementById('openQR').style.display = 'none';
-        document.getElementById('copyQRBtn').style.display = 'none';
-      };
-      img.onerror = () => showToast('فشل تحميل الصورة');
-      img.src = reader.result;
-    };
-    reader.onerror = () => showToast('فشل قراءة الملف');
-    reader.readAsDataURL(file);
-  }
-
-  function handleImageResult(data){
-    document.getElementById('qrResult').textContent = data;
-    const openBtn = document.getElementById('openQR');
-    const copyBtn = document.getElementById('copyQRBtn');
-    openBtn.style.display = 'inline-block';
-    openBtn.dataset.url = data;
-    copyBtn.style.display = 'inline-block';
-    copyBtn.dataset.url = data;
-    showToast('تم استخراج رمز QR من الصورة ✅');
-  }
-
-  function openQR(){
-    const url = document.getElementById('openQR').dataset.url;
-    if (!url) return;
-    if (isValidHttpUrl(url)) safeOpen(url);
-    else showToast('محتوى QR: ' + url);
-  }
-  function copyQR(){
-    const copyBtn = document.getElementById('copyQRBtn');
-    const raw = copyBtn?.dataset?.url || document.getElementById('openQR')?.dataset?.url || '';
-    safeCopy(raw.trim(), copyBtn);
-  }
-
-  /******************************
-   * 9. قارئ الأكواد المتداخلة (جديد)
-   ******************************/
-  const NESTED_LAYER_LABELS = { outer: 'الخارجي (Outer)', middle: 'المتوسط (Middle)', inner: 'الداخلي (Inner)' };
-  let nestedReaderStream = null;
-  let nestedReaderRAF = null;
-  let nestedReaderLastResult = '';
-
-  function stopNestedReaderCamera(){
-    if (nestedReaderRAF){ cancelAnimationFrame(nestedReaderRAF); nestedReaderRAF = null; }
-    if (nestedReaderStream){
-      nestedReaderStream.getTracks().forEach(t => t.stop());
-      nestedReaderStream = null;
-    }
-    const container = document.getElementById('nestedReaderCamContainer');
-    const btn = document.getElementById('nestedReaderCamBtn');
-    if (container) container.style.display = 'none';
-    if (btn) btn.textContent = '📷 فتح الكاميرا';
-  }
-
-  /**
-   * يحاول فك تشفير طبقة QR واحدة من canvas.
-   * يعيد { data, location } أو null.
-   */
-  function decodeOneLayer(sourceCanvas){
-    const ctx = sourceCanvas.getContext('2d');
-    const imageData = ctx.getImageData(0, 0, sourceCanvas.width, sourceCanvas.height);
-    const code = robustDecode(imageData);
-    if (!code) return null;
-    return { data: code.data, location: code.location };
-  }
-
-  /**
-   * يبحث عن رمز QR مُضمَّن داخل مركز رمز مُفكَّك.
-   * يجرّب نسب قص متعددة ويعيد canvas مقصوصًا إذا نجح، أو null.
-   */
-  function findEmbeddedQR(sourceCanvas, location){
-    const xs = [location.topLeftCorner.x, location.topRightCorner.x, location.bottomLeftCorner.x, location.bottomRightCorner.x];
-    const ys = [location.topLeftCorner.y, location.topRightCorner.y, location.bottomLeftCorner.y, location.bottomRightCorner.y];
-    const minX = Math.min(...xs), maxX = Math.max(...xs);
-    const minY = Math.min(...ys), maxY = Math.max(...ys);
-    const qrW = maxX - minX;
-    const qrH = maxY - minY;
-    if (qrW < 20 || qrH < 20) return null;
-    const cx = (minX + maxX) / 2;
-    const cy = (minY + maxY) / 2;
-
-    // نطاق واسع من النسب لتغطية Slider 10% – 50%
-    const scales = [0.55, 0.50, 0.45, 0.40, 0.35, 0.30, 0.25, 0.22, 0.20, 0.18, 0.15, 0.12, 0.10];
-
-    for (const scale of scales){
-      const cw = Math.round(qrW * scale);
-      const ch = Math.round(qrH * scale);
-      if (cw < 40 || ch < 40) continue;
-      const cropX = Math.round(cx - cw / 2);
-      const cropY = Math.round(cy - ch / 2);
-
-      const cropCanvas = document.createElement('canvas');
-      cropCanvas.width = cw;
-      cropCanvas.height = ch;
-      const cctx = cropCanvas.getContext('2d');
-      cctx.drawImage(sourceCanvas, cropX, cropY, cw, ch, 0, 0, cw, ch);
-
-      const ciData = cctx.getImageData(0, 0, cw, ch);
-      const decoded = robustDecode(ciData);
-      if (decoded){
-        return { canvas: cropCanvas, code: decoded };
-      }
-    }
-    return null;
-  }
-
-  /**
-   * التحليل الكامل: يبدأ من صورة/فيديو ويستخرج الطبقات المتداخلة تباعًا.
-   * يعيد مصفوفة [{ layer, text }, ...]
-   */
-  async function decodeNestedFromCanvas(sourceCanvas){
-    const results = [];
-    const order = ['outer', 'middle', 'inner'];
-    let currentCanvas = sourceCanvas;
-
-    for (let depth = 0; depth < 3; depth++){
-      const layer = decodeOneLayer(currentCanvas);
-      if (!layer) break;
-
-      // تجنب الازدواج: إذا كان نفس النص موجودًا بالفعل نتوقف
-      if (results.length && results[results.length - 1].text === layer.data) break;
-
-      results.push({ layer: order[depth] || `layer${depth}`, text: layer.data });
-
-      // البحث عن الطبقة الداخلية
-      const found = findEmbeddedQR(currentCanvas, layer.location);
-      if (!found) break;
-
-      // نتأكد أن الطبقة الداخلية مختلفة عن الخارجية
-      if (found.code.data === layer.data) break;
-
-      currentCanvas = found.canvas;
-    }
-    return results;
-  }
-
-  function renderNestedReaderResults(results){
-    const box = document.getElementById('nestedReaderResults');
-    if (!box) return;
-    box.innerHTML = '';
-
-    if (!results.length){
-      const empty = document.createElement('div');
-      empty.className = 'nested-empty-msg';
-      empty.textContent = 'لم يتم العثور على أي QR في الصورة/الفيديو.';
-      box.appendChild(empty);
-      return;
+        embedGapScale: 0.28 // حجم الفجوة في المعاينة أكبر نسبيًا ليظهر التأثير
+      }, true);
     }
 
-    results.forEach((r, idx) => {
-      const item = document.createElement('div');
-      item.className = 'nested-result-item';
-
-      const label = document.createElement('div');
-      label.className = 'layer-label';
-      label.innerHTML = `<i class="fa-solid fa-layer-group"></i> الطبقة ${idx + 1} — ${NESTED_LAYER_LABELS[r.layer] || r.layer}`;
-
-      const text = document.createElement('div');
-      text.className = 'layer-text';
-      text.textContent = r.text;
-
-      const actions = document.createElement('div');
-      actions.className = 'layer-actions';
-
-      if (isValidHttpUrl(r.text)){
-        const openBtn = document.createElement('button');
-        openBtn.textContent = 'فتح';
-        openBtn.onclick = (e) => { e.stopPropagation(); safeOpen(r.text); };
-        actions.appendChild(openBtn);
-      }
-      const copyBtn = document.createElement('button');
-      copyBtn.textContent = 'نسخ';
-      copyBtn.onclick = (e) => { e.stopPropagation(); safeCopy(r.text, copyBtn); };
-      actions.appendChild(copyBtn);
-
-      item.appendChild(label);
-      item.appendChild(text);
-      item.appendChild(actions);
-      box.appendChild(item);
-    });
-
-    if (results.length === 1){
-      const note = document.createElement('div');
-      note.className = 'nested-empty-msg';
-      note.textContent = 'ملاحظة: تم العثور على طبقة واحدة فقط — قد لا يكون الكود مُدمجًا.';
-      box.appendChild(note);
-    }
-  }
-
-  function handleNestedReaderImage(event){
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = async () => {
-      const img = new Image();
-      img.onload = async () => {
-        showToast('جارٍ تحليل الطبقات...');
-        const canvas = document.createElement('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        canvas.getContext('2d').drawImage(img, 0, 0);
-        try {
-          const results = await decodeNestedFromCanvas(canvas);
-          renderNestedReaderResults(results);
-          showToast(results.length > 1 ? `تم اكتشاف ${results.length} طبقات ✅` : 'اكتمل التحليل');
-        } catch (e){
-          console.error(e);
-          showToast('فشل تحليل الأكواد المتداخلة');
-        }
-      };
-      img.onerror = () => showToast('فشل تحميل الصورة');
-      img.src = reader.result;
-    };
-    reader.onerror = () => showToast('فشل قراءة الملف');
-    reader.readAsDataURL(file);
-    // إعادة تعيين الحقل حتى يمكن رفع نفس الصورة مجددًا
-    event.target.value = '';
-  }
-
-  async function toggleNestedReaderCamera(){
-    if (nestedReaderStream){ stopNestedReaderCamera(); return; }
-
-    const video = document.getElementById('nestedReaderVideo');
-    const container = document.getElementById('nestedReaderCamContainer');
-    const btn = document.getElementById('nestedReaderCamBtn');
-
-    try {
-      nestedReaderStream = await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: { ideal: 'environment' } }
-      });
-      video.srcObject = nestedReaderStream;
-      container.style.display = 'block';
-      btn.textContent = '⛔ إيقاف الكاميرا';
-      showToast('كاميرا القارئ المدمج مفتوحة — وجّه الكود نحو الكاميرا');
-      startNestedReaderScan(video);
-    } catch (err){
-      console.error(err);
-      showToast('لم يتم منح إذن الكاميرا ❌');
-      nestedReaderStream = null;
-    }
-  }
-
-  function startNestedReaderScan(video){
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    let frame = 0;
-    let stableHits = 0;
-    let lastOuter = '';
-
-    function scan(){
-      if (!nestedReaderStream){ nestedReaderRAF = null; return; }
-      frame++;
-      // نُقلل الحمل: إطار كل 3
-      if (video.readyState === video.HAVE_ENOUGH_DATA && frame % 3 === 0){
-        const targetW = Math.min(video.videoWidth, 480);
-        const scale = targetW / video.videoWidth;
-        canvas.width = targetW;
-        canvas.height = Math.round(video.videoHeight * scale);
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-        try {
-          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-          const outer = robustDecode(imageData);
-          if (outer){
-            if (outer.data === lastOuter) stableHits++;
-            else { lastOuter = outer.data; stableHits = 1; }
-
-            // ننتظر استقرارًا خفيفًا قبل التحليل الكامل
-            if (stableHits >= 2){
-              // نُشغّل التحليل الكامل بشكل غير مُتزامن
-              const snapshotCanvas = document.createElement('canvas');
-              snapshotCanvas.width = canvas.width;
-              snapshotCanvas.height = canvas.height;
-              snapshotCanvas.getContext('2d').drawImage(canvas, 0, 0);
-              decodeNestedFromCanvas(snapshotCanvas).then(results => {
-                if (results.length >= 2){
-                  renderNestedReaderResults(results);
-                  showToast(`تم اكتشاف ${results.length} طبقات ✅`);
-                  stopNestedReaderCamera();
-                }
-              });
-              stableHits = 0;
-            }
-          } else {
-            stableHits = 0;
-          }
-        } catch (e){ /* silent */ }
-      }
-      nestedReaderRAF = requestAnimationFrame(scan);
-    }
-    scan();
-  }
-
-  /******************************
-   * 10. بطاقة التوليد المتداخل
-   ******************************/
-  (function bindNestedUI(){
-    const btn2 = document.getElementById('nestedCount2Btn');
-    const btn3 = document.getElementById('nestedCount3Btn');
-    const middleBlock = document.getElementById('middleBlock');
-    const middleScaleWrapper = document.getElementById('middleScaleWrapper');
-    const innerScale = document.getElementById('innerScale');
-    const innerScaleVal = document.getElementById('innerScaleVal');
-    const middleScale = document.getElementById('middleScale');
-    const middleScaleVal = document.getElementById('middleScaleVal');
-    const generateBtn = document.getElementById('generateNestedBtn');
-    const downloadBtn = document.getElementById('downloadNestedBtn');
-    const previewCanvas = document.getElementById('nestedPreviewCanvas');
-
-    // ربط حقول الألوان مع نصوص Hex
-    function syncColor(colorInputId, hexInputId){
-      const ci = document.getElementById(colorInputId);
-      const hi = document.getElementById(hexInputId);
-      if (!ci || !hi) return;
-      ci.addEventListener('input', () => { hi.value = ci.value; });
-      hi.addEventListener('change', () => {
-        if (/^#[0-9a-fA-F]{6}$/.test(hi.value.trim())){
-          ci.value = hi.value.trim();
-        } else {
-          hi.value = ci.value;
-        }
-      });
-    }
-    syncColor('outerColorDark', 'outerColorDarkHex');
-    syncColor('outerColorLight', 'outerColorLightHex');
-    syncColor('middleColorDark', 'middleColorDarkHex');
-    syncColor('middleColorLight', 'middleColorLightHex');
-    syncColor('innerColorDark', 'innerColorDarkHex');
-    syncColor('innerColorLight', 'innerColorLightHex');
-
-    function setCount(n){
-      if (n === 2){
-        btn2.classList.add('active');
-        btn3.classList.remove('active');
-        middleBlock.style.display = 'none';
-        middleScaleWrapper.style.display = 'none';
-      } else {
-        btn2.classList.remove('active');
-        btn3.classList.add('active');
-        middleBlock.style.display = 'block';
-        middleScaleWrapper.style.display = 'block';
-      }
-    }
-    btn2.onclick = (e) => { e.stopPropagation(); setCount(2); };
-    btn3.onclick = (e) => { e.stopPropagation(); setCount(3); };
-    setCount(2);
-
-    innerScale.oninput = () => { innerScaleVal.textContent = innerScale.value; };
-    middleScale.oninput = () => { middleScaleVal.textContent = middleScale.value; };
-
-    generateBtn.onclick = async (e) => {
-      e.stopPropagation();
-      generateBtn.disabled = true;
-      const oldText = generateBtn.textContent;
-      generateBtn.textContent = '⏳ جارٍ التوليد...';
-      showToast('جارٍ توليد الأكواد بدقة 1000px...');
+    /**
+     * drawQROnCanvas:
+     * - عند centerImageMode === 'embed' ننشئ فراغًا (نمنع رسم أي موديولات) في المنطقة المركزية.
+     * - هذا يصنع "كودًا حول الشعار" بحيث لا يلامس الشعار أي موديول.
+     * - embedGapScale يحدد نسبة الفجوة من عرض القماش (قابل للتعديل في المعاينة/التوليد).
+     */
+    async function drawQROnCanvas(canvas, text, size, mode, opts = {}, isPreview=false){
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.fillStyle = opts.colorLight || settings.colorLight || '#fff';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
 
       try {
+        // زيادة مستوى تصحيح الخطأ أثناء الإنشاء إذا رغب المستخدم — لكن نحترم الإعداد المستخدم
+        const qrm = QRCode.create(text, { errorCorrectionLevel: opts.ecc || settings.ecc });
+        const modules = qrm.modules;
+        if(!modules) throw new Error('no modules');
+        const moduleCount = modules.size;
+        const moduleSize = canvas.width / moduleCount;
+
+        // تحديد فجوة التضمين الحقيقية (نترك موديولات المركز دون رسم)
+        let embedRect = null;
+        if(opts.centerImageData && (opts.centerImageMode || settings.centerImageMode) === 'embed'){
+          const gapScale = (typeof opts.embedGapScale === 'number') ? opts.embedGapScale : 0.20;
+          const gapW = Math.floor(canvas.width * gapScale);
+          const gapH = gapW;
+          const gapX = Math.floor((canvas.width - gapW)/2);
+          const gapY = Math.floor((canvas.height - gapH)/2);
+          // لتجنب لمس العيون، نوسّع الفجوة قليلًا بحيث تحافظ الموديولات حولها على تباعد آمن
+          const pad = Math.ceil(moduleSize * 0.5);
+          embedRect = { x: gapX - pad, y: gapY - pad, w: gapW + pad*2, h: gapH + pad*2, innerX: gapX, innerY: gapY, innerW: gapW, innerH: gapH };
+        }
+
+        function isFinder(r,c){
+          const n = moduleCount;
+          if(r<=6 && c<=6) return true;
+          if(r<=6 && c>=n-7) return true;
+          if(r>=n-7 && c<=6) return true;
+          return false;
+        }
+
+        function moduleInEmbed(r,c){
+          if(!embedRect) return false;
+          const x = c * moduleSize, y = r * moduleSize;
+          const cx = x + moduleSize/2, cy = y + moduleSize/2;
+          return (cx >= embedRect.x && cx <= embedRect.x + embedRect.w && cy >= embedRect.y && cy <= embedRect.y + embedRect.h);
+        }
+
+        // رسم الموديولات متجنبين المنطقة المركزية إذا وجدت
+        for(let r=0;r<moduleCount;r++){
+          for(let c=0;c<moduleCount;c++){
+            const dark = modules.get(c, r);
+            if(!dark) continue;
+
+            if(moduleInEmbed(r,c)) continue; // هنا نتجنب رسم الموديول ليبقى الفجوة حرة للشعار
+
+            const x = Math.round(c * moduleSize);
+            const y = Math.round(r * moduleSize);
+
+            // إذا كان داخل مناطق العيون (finder) نرسمها بلون العيون مع الحفاظ على المسافة إذا اقتربت من الفجوة
+            if(isFinder(r,c)){
+              ctx.fillStyle = opts.colorEyes || settings.colorEyes || settings.colorDark;
+              ctx.fillRect(x, y, Math.ceil(moduleSize), Math.ceil(moduleSize));
+              continue;
+            }
+
+            ctx.fillStyle = opts.colorDark || settings.colorDark;
+            if(mode === 'classic'){
+              ctx.fillRect(x, y, Math.ceil(moduleSize), Math.ceil(moduleSize));
+            } else if(mode === 'dot'){
+              const cx = x + moduleSize/2, cy = y + moduleSize/2;
+              const radius = moduleSize * 0.45;
+              ctx.beginPath();
+              ctx.arc(cx, cy, radius, 0, Math.PI*2);
+              ctx.fill();
+            } else if(mode === 'hybrid'){
+              const cx = x + moduleSize/2, cy = y + moduleSize/2;
+              const radius = moduleSize * 0.35;
+              ctx.beginPath();
+              ctx.arc(cx, cy, radius, 0, Math.PI*2);
+              ctx.fill();
+            }
+          }
+        }
+
+        // إذا كانت وضعية التضمين embed: نضمن أن الفجوة المركزية فارغة تمامًا ثم نرسم خلفية نظيفة (لون الخلفية) داخل الفجوة،
+        // ثم نرسم الصورة فوقها. هذا يضمن "إنشاء الكود حول الشعار" فعليًا: أي لا موديولات أسفل الشعار.
+        if(opts.centerImageData && (opts.centerImageMode || settings.centerImageMode) === 'embed'){
+          await drawCenterEmbedded(canvas, opts.centerImageData, embedRect);
+        } else if(opts.centerImageData){
+          await drawCenterOverlay(canvas, opts.centerImageData);
+        }
+
+      } catch(e){
+        console.error('drawQROnCanvas error', e);
+        try{
+          // fallback سريع
+          await QRCode.toCanvas(canvas, text, { width: size, margin: 1, color: { dark: opts.colorDark || settings.colorDark, light: opts.colorLight || settings.colorLight }, errorCorrectionLevel: opts.ecc || settings.ecc });
+          if(opts.centerImageData && (opts.centerImageMode || settings.centerImageMode) === 'embed'){
+            // في fallback نطبق نفس استراتيجية embed: نرسم الصورة داخل فجوة ونحاول إزالة الموديولات المركزية برسم خلفية واضحة
+            const moduleCount = 33; // تقدير افتراضي للمساعدة إن فشل الوصول للمصفوفة
+            const pad = 6;
+            const embedRect = { x: Math.floor(size*0.5 - size*0.1) - pad, y: Math.floor(size*0.5 - size*0.1) - pad, w: Math.floor(size*0.2) + pad*2, h: Math.floor(size*0.2) + pad*2, innerX: Math.floor(size*0.5 - size*0.1), innerY: Math.floor(size*0.5 - size*0.1), innerW: Math.floor(size*0.2), innerH: Math.floor(size*0.2) };
+            await drawCenterEmbedded(canvas, opts.centerImageData, embedRect);
+          } else if(opts.centerImageData){
+            await drawCenterOverlay(canvas, opts.centerImageData);
+          }
+        }catch(err){ console.error('fallback failed', err); }
+      }
+    }
+
+    // رسم الشعار فوق QR كما كان سابقًا (overlay)
+    async function drawCenterOverlay(qrCanvas, dataURL){
+      const ctx = qrCanvas.getContext('2d');
+      const size = qrCanvas.width;
+      if(!dataURL) return;
+      const img = new Image(); img.crossOrigin = 'anonymous'; img.src = dataURL;
+      return new Promise((resolve)=>{
+        img.onload = ()=>{
+          const scale = 0.20;
+          const w = Math.floor(size * scale);
+          let h = Math.floor(w * (img.height / img.width));
+          if(h > w) h = w;
+          const centerX = Math.floor((size - w)/2);
+          const centerY = Math.floor((size - h)/2);
+          ctx.drawImage(img, centerX, centerY, w, h);
+          resolve();
+        };
+        img.onerror = ()=>{ resolve(); };
+      });
+    }
+
+    // التضمين الحقيقي: فارغ (لا موديولات تحت الصورة) ثم رسم صورة الشعار داخل ذلك الفراغ
+    async function drawCenterEmbedded(qrCanvas, dataURL, embedRect){
+      const ctx = qrCanvas.getContext('2d');
+      const size = qrCanvas.width;
+      if(!dataURL) return;
+      const img = new Image(); img.crossOrigin = 'anonymous'; img.src = dataURL;
+      return new Promise((resolve)=>{
+        img.onload = ()=>{
+          // الحساب يعتمد على embedRect.innerW / innerH إذا متاحة، وإلا نأخذ نسبة ثابتة
+          const innerW = (embedRect && embedRect.innerW) ? embedRect.innerW : Math.floor(size * 0.20);
+          const innerH = (embedRect && embedRect.innerH) ? embedRect.innerH : innerW;
+          const innerX = (embedRect && embedRect.innerX) ? embedRect.innerX : Math.floor((size - innerW)/2);
+          const innerY = (embedRect && embedRect.innerY) ? embedRect.innerY : Math.floor((size - innerH)/2);
+
+          // نرسم خلفية نظيفة حول إطار الصورة (بسمك قليل) بلون الخلفية لتعزيز التباين وعدم تداخل الموديولات
+          const pad = Math.max(4, Math.floor(innerW * 0.06));
+          const radius = Math.max(6, Math.floor(innerW * 0.08));
+          ctx.save();
+          ctx.fillStyle = settings.colorLight || '#ffffff';
+          roundRect(ctx, innerX - pad, innerY - pad, innerW + pad*2, innerH + pad*2, radius);
+          ctx.fill();
+          ctx.restore();
+
+          // نرسم الصورة نفسها داخل الفجوة (بدون تغيير)
+          // حفظ نسبة الصورة داخل المساحة المخصصة
+          let w = innerW;
+          let h = Math.floor(w * (img.height / img.width));
+          if(h > innerH) { h = innerH; w = Math.floor(h * (img.width / img.height)); }
+          const cx = innerX + Math.floor((innerW - w)/2);
+          const cy = innerY + Math.floor((innerH - h)/2);
+          ctx.drawImage(img, cx, cy, w, h);
+          resolve();
+        };
+        img.onerror = ()=>{ resolve(); };
+      });
+    }
+
+    function roundRect(ctx, x, y, width, height, radius) {
+      if (width < 2 * radius) radius = width / 2;
+      if (height < 2 * radius) radius = height / 2;
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.arcTo(x + width, y, x + width, y + height, radius);
+      ctx.arcTo(x + width, y + height, x, y + height, radius);
+      ctx.arcTo(x, y + height, x, y, radius);
+      ctx.arcTo(x, y, x + width, y, radius);
+      ctx.closePath();
+    }
+
+    /******************************
+     * توليد / تنزيل / عرض
+     ******************************/
+    const QR_CANVAS = document.getElementById('qrCanvas');
+    async function generateQR(){
+      const text = document.getElementById('qrInput').value.trim();
+      if(!text) return showToast('الرجاء إدخال نص أو رابط أولاً');
+      saveSettings();
+      document.getElementById('qrOptions').style.display = 'block';
+      // عندما نستخدم embed نزيد الفجوة قليلا في التوليد الحقيقي
+      const embedScale = (settings.centerImageMode === 'embed') ? 0.22 : 0.20;
+      await drawQROnCanvas(QR_CANVAS, text, settings.size, settings.style, {
+        colorDark: settings.colorDark,
+        colorLight: settings.colorLight,
+        colorEyes: settings.colorEyes,
+        ecc: settings.ecc,
+        centerImageData: settings.centerImageData,
+        centerImageMode: settings.centerImageMode,
+        embedGapScale: embedScale
+      }, false);
+      document.getElementById('fullscreenQR').src = QR_CANVAS.toDataURL();
+      showToast('تم توليد رمز QR بنجاح ✅');
+    }
+
+    function downloadQR(){
+      const link = document.createElement('a');
+      link.href = QR_CANVAS.toDataURL('image/png');
+      link.download = 'qr.png';
+      link.click();
+    }
+    function showFullscreen(){ document.getElementById('fullscreenView').style.display = 'flex'; }
+    function hideFullscreen(){ document.getElementById('fullscreenView').style.display = 'none'; }
+
+    /******************************
+     * قارئ الكاميرا وقراءة كل أنواع الرموز حتى مع شعار في الوسط
+     ******************************/
+    let cameraStream = null;
+    const hasBarcodeDetector = ('BarcodeDetector' in window);
+    if(hasBarcodeDetector){
+      try { window.barcodeDetector = new BarcodeDetector({ formats: ['qr_code','aztec','data_matrix','ean_13','ean_8','code_128','upc_e'] }); }
+      catch(e){ console.warn('BarcodeDetector init failed', e); }
+    }
+
+    function toggleCamera(){
+      const video = document.getElementById('cameraView');
+      const container = document.getElementById('cameraContainer');
+      const btn = document.getElementById('cameraButton');
+      if(cameraStream){
+        cameraStream.getTracks().forEach(t=>t.stop());
+        cameraStream = null;
+        container.style.display = 'none';
+        btn.textContent = '📷 فتح الكاميرا';
+        showToast('تم إيقاف الكاميرا 🔒');
+        return;
+      }
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+        .then(stream=>{
+          cameraStream = stream;
+          video.srcObject = stream;
+          container.style.display = 'block';
+          btn.textContent = '⛔ إيقاف الكاميرا';
+          showToast('تم فتح الكاميرا ✅');
+          if(window.barcodeDetector) startBarcodeDetector(video);
+          else startRobustScanner(video);
+        })
+        .catch(err=>{ console.error(err); showToast('لم يتم منح إذن الكاميرا ❌'); });
+    }
+
+    function startBarcodeDetector(video){
+      const canvas = document.createElement('canvas'); const ctx = canvas.getContext('2d');
+      async function detect(){
+        if(!cameraStream) return;
+        if(video.readyState === video.HAVE_ENOUGH_DATA){
+          canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+          ctx.drawImage(video,0,0,canvas.width,canvas.height);
+          try{
+            const codes = await window.barcodeDetector.detect(canvas);
+            if(codes && codes.length){
+              handleDetectedCode(codes[0].rawValue || codes[0].rawData);
+              toggleCamera();
+              return;
+            }
+          }catch(e){ console.warn('detector error', e); }
+        }
+        requestAnimationFrame(detect);
+      }
+      detect();
+    }
+
+    // مسح قوي: يحاول عدة طرق لالتقاط QR حتى لو كان به شعار في المنتصف
+    function startRobustScanner(video){
+      const canvas = document.createElement('canvas'); const ctx = canvas.getContext('2d');
+      async function scan(){
+        if(!cameraStream) return;
+        if(video.readyState === video.HAVE_ENOUGH_DATA){
+          canvas.width = video.videoWidth; canvas.height = video.videoHeight;
+          ctx.drawImage(video,0,0,canvas.width,canvas.height);
+          const imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
+
+          // محاولة 1: jsQR الأساسي
+          let code = jsQR(imageData.data, canvas.width, canvas.height);
+          if(code){
+            handleDetectedCode(code.data);
+            toggleCamera();
+            return;
+          }
+
+          // محاولة 2: نسخ محسّن التباين (تحويل لدرجات الرمادي + زيادة التباين)
+          const enhanced = enhanceImageData(imageData, 1.4, 10);
+          code = jsQR(enhanced.data, enhanced.width, enhanced.height);
+          if(code){
+            handleDetectedCode(code.data);
+            toggleCamera();
+            return;
+          }
+
+          // محاولة 3: مسح الحواف (قطع الوسط) — مفيد إن الشعار يغطي الوسط: نبحث عن رمز في حواف الصورة
+          const edgeResult = scanEdgesForQR(imageData);
+          if(edgeResult){
+            handleDetectedCode(edgeResult);
+            toggleCamera();
+            return;
+          }
+
+          // محاولة 4: مسح بنسب ودوارات صغيرة (90/180) — نجرّب دوران سريع
+          const rotations = [90,180,270];
+          for(const deg of rotations){
+            const rot = rotateImageData(imageData, deg);
+            const c = jsQR(rot.data, rot.width, rot.height);
+            if(c){ handleDetectedCode(c.data); toggleCamera(); return; }
+            const enh = enhanceImageData(rot,1.3,8);
+            const c2 = jsQR(enh.data, enh.width, enh.height);
+            if(c2){ handleDetectedCode(c2.data); toggleCamera(); return; }
+          }
+        }
+        requestAnimationFrame(scan);
+      }
+      scan();
+    }
+
+    // تقوية التباين + تحويل لدرجات الرمادي
+    function enhanceImageData(imageData, contrast = 1.3, brightness = 0){
+      const w = imageData.width, h = imageData.height;
+      const out = new ImageData(w,h);
+      const d = imageData.data, od = out.data;
+      // حساب عامل التباين
+      const factor = (259*(contrast + 255))/(255*(259 - contrast));
+      for(let i=0;i<d.length;i+=4){
+        // رمادي
+        const r = d[i], g = d[i+1], b = d[i+2];
+        let v = 0.299*r + 0.587*g + 0.114*b;
+        v = factor*(v-128) + 128 + brightness;
+        v = Math.max(0, Math.min(255, v));
+        od[i]=od[i+1]=od[i+2]=v;
+        od[i+3]=255;
+      }
+      return out;
+    }
+
+    // مسح الحواف: نأخذ 4 مستطيلات للحواف ونحث jsQR عليها
+    function scanEdgesForQR(imageData){
+      const w = imageData.width, h = imageData.height;
+      const ctx = document.createElement('canvas').getContext('2d');
+      const canvas = ctx.canvas;
+      // helper to run jsQR on a cropped area
+      function runOnCrop(x,y,cw,ch){
+        canvas.width = cw; canvas.height = ch;
+        ctx.putImageData(imageData, -x, -y);
+        const id = ctx.getImageData(0,0,cw,ch);
+        const code = jsQR(id.data, cw, ch);
+        return code ? code.data : null;
+      }
+      // أعلى، أسفل، يسار، يمين
+      const edgeSizeW = Math.floor(w * 0.4);
+      const edgeSizeH = Math.floor(h * 0.4);
+      const crops = [
+        {x: Math.floor((w - edgeSizeW)/2), y: 0, cw: edgeSizeW, ch: edgeSizeH}, // أعلى
+        {x: Math.floor((w - edgeSizeW)/2), y: h - edgeSizeH, cw: edgeSizeW, ch: edgeSizeH}, // أسفل
+        {x: 0, y: Math.floor((h - edgeSizeH)/2), cw: edgeSizeW, ch: edgeSizeH}, // يسار
+        {x: w - edgeSizeW, y: Math.floor((h - edgeSizeH)/2), cw: edgeSizeW, ch: edgeSizeH} // يمين
+      ];
+      for(const c of crops){
+        try{
+          const res = runOnCrop(c.x,c.y,c.cw,c.ch);
+          if(res) return res;
+        }catch(e){/* ignore */ }
+      }
+      return null;
+    }
+
+    function rotateImageData(imageData, deg){
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      if(deg === 90 || deg === 270){
+        canvas.width = imageData.height; canvas.height = imageData.width;
+      } else {
+        canvas.width = imageData.width; canvas.height = imageData.height;
+      }
+      // رسم ثم قراءة
+      const tmp = document.createElement('canvas'); tmp.width = imageData.width; tmp.height = imageData.height;
+      tmp.getContext('2d').putImageData(imageData,0,0);
+      ctx.translate(canvas.width/2, canvas.height/2);
+      ctx.rotate(deg * Math.PI / 180);
+      ctx.drawImage(tmp, -imageData.width/2, -imageData.height/2);
+      return ctx.getImageData(0,0,canvas.width,canvas.height);
+    }
+
+    // التعامل مع النتيجة المكتشفة
+    let lastDetectedData = '';
+    function handleDetectedCode(data){
+      showToast('تم التعرف على QR ✅');
+      lastDetectedData = (typeof data === 'string') ? data : String(data);
+      const area = document.getElementById('cameraResultArea');
+      const textEl = document.getElementById('cameraResultText');
+      const btnOpen = document.getElementById('cameraOpenBtn');
+      const btnCopy = document.getElementById('cameraCopyBtn');
+      const btnShow = document.getElementById('cameraShowBtn');
+      textEl.textContent = lastDetectedData;
+      area.style.display = 'block';
+      btnOpen.style.display = 'inline-block';
+      btnCopy.style.display = 'inline-block';
+      btnShow.style.display = 'inline-block';
+    }
+
+    function openDetected(){
+      if(!lastDetectedData) return showToast('لا يوجد محتوى للفتح');
+      if(lastDetectedData.startsWith('http')) window.open(lastDetectedData, '_blank');
+      else showToast('محتوى QR: ' + lastDetectedData);
+    }
+
+    function copyDetected(){
+      if(!lastDetectedData) return showToast('لا يوجد محتوى للنسخ');
+      const btn = document.getElementById('cameraCopyBtn');
+      btn.disabled = true; btn.style.opacity = '0.6';
+      navigator.clipboard.writeText(lastDetectedData).then(()=>{
+        showToast('تم النسخ إلى الحافظة');
+        const oldText = btn.textContent;
+        btn.textContent = 'تم النسخ';
+        btn.style.backgroundColor = '#9be294';
+        setTimeout(()=>{ btn.textContent = oldText; btn.style.backgroundColor = 'gold'; btn.disabled = false; btn.style.opacity = '1'; }, 1400);
+      }).catch(()=>{ showToast('فشل النسخ'); btn.disabled = false; btn.style.opacity = '1'; });
+    }
+
+    async function showDetected(){
+      if(!lastDetectedData) return showToast('لا يوجد محتوى للعرض');
+      try{
+        await drawQROnCanvas(QR_CANVAS, lastDetectedData, settings.size, settings.style, {
+          colorDark: settings.colorDark,
+          colorLight: settings.colorLight,
+          colorEyes: settings.colorEyes,
+          ecc: settings.ecc,
+          centerImageData: settings.centerImageData,
+          centerImageMode: settings.centerImageMode,
+          embedGapScale: (settings.centerImageMode === 'embed') ? 0.22 : 0.20
+        }, false);
+        document.getElementById('fullscreenQR').src = QR_CANVAS.toDataURL();
+        showFullscreen();
+      }catch(e){ console.error(e); showToast('فشل عرض المحتوى'); }
+    }
+
+    /******************************
+     * قراءة من صورة (ملف)
+     * نطبق نفس استراتيجيات القراءة القوية كما في الكاميرا
+     ******************************/
+    function readQRFromImage(event){
+      const file = event.target.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = function(){
+        const img = new Image();
+        img.onload = async function(){
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width; canvas.height = img.height;
+          const ctx = canvas.getContext('2d'); ctx.drawImage(img,0,0);
+          const imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
+
+          // محاولة BarcodeDetector أولًا إن كان متاحًا
+          if(window.barcodeDetector){
+            try{
+              const tmpCanvas = document.createElement('canvas'); tmpCanvas.width = canvas.width; tmpCanvas.height = canvas.height;
+              tmpCanvas.getContext('2d').drawImage(img,0,0);
+              const codes = await window.barcodeDetector.detect(tmpCanvas);
+              if(codes && codes.length){ handleImageResult(codes[0].rawValue || codes[0].rawData); return; }
+            }catch(e){ /* continue to jsQR attempts */ }
+          }
+
+          // jsQR أساسي
+          let code = jsQR(imageData.data, canvas.width, canvas.height);
+          if(code){ handleImageResult(code.data); return; }
+
+          // تحسين وقراءة
+          const enhanced = enhanceImageData(imageData,1.4,10);
+          code = jsQR(enhanced.data, enhanced.width, enhanced.height);
+          if(code){ handleImageResult(code.data); return; }
+
+          // مسح الحواف
+          const edge = scanEdgesForQR(imageData);
+          if(edge){ handleImageResult(edge); return; }
+
+          // تدوير ومحاولة
+          const rotations = [90,180,270];
+          for(const deg of rotations){
+            const rot = rotateImageData(imageData, deg);
+            const c = jsQR(rot.data, rot.width, rot.height);
+            if(c){ handleImageResult(c.data); return; }
+            const enh = enhanceImageData(rot,1.3,8);
+            const c2 = jsQR(enh.data, enh.width, enh.height);
+            if(c2){ handleImageResult(c2.data); return; }
+          }
+
+          const qrResult = document.getElementById('qrResult');
+          qrResult.textContent = 'لم يتم التعرف على QR في الصورة.';
+          const openBtn = document.getElementById('openQR');
+          openBtn.style.display = 'none';
+          const copyBtn = document.getElementById('copyQRBtn');
+          copyBtn.style.display = 'none';
+        };
+        img.src = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handleImageResult(data){
+      const qrResult = document.getElementById('qrResult');
+      const openBtn = document.getElementById('openQR');
+      qrResult.textContent = data;
+      openBtn.style.display = 'inline-block';
+      openBtn.dataset.url = data;
+      const copyBtn = document.getElementById('copyQRBtn');
+      copyBtn.style.display = 'inline-block';
+      copyBtn.dataset.url = data;
+      showToast('تم استخراج رمز QR من الصورة ✅');
+    }
+
+    function openQR(){
+      const url = document.getElementById('openQR').dataset.url;
+      if(url && url.startsWith('http')) window.open(url,'_blank');
+      else showToast('محتوى QR: ' + (url||''));
+    }
+    function copyQR(){
+      const copyBtn = document.getElementById('copyQRBtn');
+      const openBtn = document.getElementById('openQR');
+      const qrResult = document.getElementById('qrResult');
+      const raw = copyBtn?.dataset?.url || openBtn?.dataset?.url || qrResult?.textContent || '';
+      const textToCopy = raw.trim();
+      if(!textToCopy){ showToast('لا يوجد محتوى للنسخ'); return; }
+      copyBtn.disabled = true; copyBtn.style.opacity = '0.6';
+      navigator.clipboard.writeText(textToCopy).then(()=>{ showToast('تم النسخ إلى الحافظة'); const oldText = copyBtn.textContent; copyBtn.textContent = 'تم النسخ'; copyBtn.style.backgroundColor = '#9be294'; setTimeout(()=>{ copyBtn.textContent = oldText; copyBtn.style.backgroundColor = 'gold'; copyBtn.disabled = false; copyBtn.style.opacity = '1'; },1400); }).catch(()=>{ showToast('فشل النسخ'); copyBtn.disabled = false; copyBtn.style.opacity = '1'; });
+    }
+
+    /******************************
+     * إعدادات حفظ/تأكيد/إعادة ضبط
+     ******************************/
+    function applySettingsUI(){ saveSettings(); showToast('تم تأكيد الإعدادات'); closeSettingsUI(); const currentText = document.getElementById('qrInput').value.trim(); if(currentText) generateQR(); }
+    function resetSettingsUI(){ settings = Object.assign({}, DEFAULTS); saveSettings(); if(modal.style.display === 'block') bindUIEvents(modal); if(sidebar.style.display === 'block'){ sidebar.innerHTML = modal.innerHTML; bindUIEvents(sidebar); } updatePreview(document); showToast('تم إعادة ضبط الإعدادات إلى الافتراضي'); }
+
+    (function init(){
+      const dispBtns = modal.querySelectorAll('#displayTypeBtns button');
+      dispBtns.forEach(b=> b.onclick = ()=>{ modal.querySelectorAll('#displayTypeBtns button').forEach(x=>x.classList.remove('active')); b.classList.add('active'); settings.displayType = b.dataset.value; });
+
+      const styleBtns = modal.querySelectorAll('#styleBtns button');
+      styleBtns.forEach(b=> b.onclick = ()=>{ modal.querySelectorAll('#styleBtns button').forEach(x=>x.classList.remove('active')); b.classList.add('active'); settings.style = b.dataset.value; });
+
+      const sizeRange = modal.querySelector('#sizeRange');
+      const sizeVal = modal.querySelector('#sizeVal');
+      sizeRange.oninput = ()=>{ sizeVal.textContent = sizeRange.value; settings.size = parseInt(sizeRange.value); updatePreview(modal); };
+
+      const upMain = modal.querySelector('#centerImageUpload');
+      if(upMain) upMain.onchange = (e)=> handleCenterUpload(e, modal);
+
+      const cmBtns = modal.querySelectorAll('#centerModeBtns button');
+      cmBtns.forEach(b=>{ b.classList.toggle('active', b.dataset.value === settings.centerImageMode); b.onclick = ()=>{ modal.querySelectorAll('#centerModeBtns button').forEach(x=>x.classList.remove('active')); b.classList.add('active'); settings.centerImageMode = b.dataset.value; }; });
+
+      const colorEyes = modal.querySelector('#colorEyes');
+      if(colorEyes) colorEyes.value = settings.colorEyes || settings.colorDark;
+
+      updatePreview(modal);
+      window.addEventListener('beforeunload', ()=> saveSettings() );
+    })();
+
+    (function createManifestAndSW(){
+      try{
+        const ICON_SRC = '/icon.png';
+        const manifest = {
+          name: 'TheraQR',
+          short_name: 'TheraQR',
+          start_url: '.',
+          display: 'standalone',
+          background_color: '#ffffff',
+          theme_color: '#00aaff',
+          icons: [
+            { src: ICON_SRC, sizes: '192x192', type: 'image/png' },
+            { src: ICON_SRC, sizes: '512x512', type: 'image/png' }
+          ]
+        };
+        const manifestBlob = new Blob([JSON.stringify(manifest)], {type:'application/json'});
+        const manifestURL = URL.createObjectURL(manifestBlob);
+        const link = document.createElement('link'); link.rel='manifest'; link.href = manifestURL;
+        document.head.appendChild(link);
+      }catch(e){ console.warn('manifest create failed', e); }
+
+      if('serviceWorker' in navigator){
+        const swCode = `
+self.addEventListener('install', e=>{
+  self.skipWaiting();
+  e.waitUntil(
+    caches.open('theraqr-v1').then(c=>c.addAll(['./','/','/index.html','/icon.png']).catch(()=>{}))
+  );
+});
+self.addEventListener('fetch', e=>{
+  e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)).catch(()=>{}));
+});
+`;
+        try{
+          const swBlob = new Blob([swCode], {type:'text/javascript'});
+          const swURL = URL.createObjectURL(swBlob);
+          navigator.serviceWorker.register(swURL).then(()=>console.log('sw registered')).catch(e=>console.warn('sw reg failed', e));
+        }catch(e){ console.warn('sw create failed', e); }
+      }
+    })();
+
+    /******************************
+     * كود البطاقة البنفسجية: سلوك الواجهة والتوليد المتداخل
+     ******************************/
+    (function bindNestedUI(){
+      // عناصر
+      const btn2 = document.getElementById('nestedCount2Btn');
+      const btn3 = document.getElementById('nestedCount3Btn');
+      const middleBlock = document.getElementById('middleBlock');
+      const middleScaleWrapper = document.getElementById('middleScaleWrapper');
+      const innerScale = document.getElementById('innerScale');
+      const innerScaleVal = document.getElementById('innerScaleVal');
+      const middleScale = document.getElementById('middleScale');
+      const middleScaleVal = document.getElementById('middleScaleVal');
+      const generateBtn = document.getElementById('generateNestedBtn');
+      const downloadBtn = document.getElementById('downloadNestedBtn');
+      const previewCanvas = document.getElementById('nestedPreviewCanvas');
+
+      // color hex sync helpers
+      function syncColorInputs(colorInput, hexInput){
+        colorInput.addEventListener('input', ()=>{ hexInput.value = colorInput.value; });
+        hexInput.addEventListener('change', ()=>{ try{ colorInput.value = hexInput.value; }catch(e){} });
+      }
+
+      // bind color inputs for outer/middle/inner
+      syncColorInputs(document.getElementById('outerColorDark'), document.getElementById('outerColorDarkHex'));
+      syncColorInputs(document.getElementById('outerColorLight'), document.getElementById('outerColorLightHex'));
+      syncColorInputs(document.getElementById('innerColorDark'), document.getElementById('innerColorDarkHex'));
+      syncColorInputs(document.getElementById('innerColorLight'), document.getElementById('innerColorLightHex'));
+      syncColorInputs(document.getElementById('middleColorDark'), document.getElementById('middleColorDarkHex'));
+      syncColorInputs(document.getElementById('middleColorLight'), document.getElementById('middleColorLightHex'));
+
+      // number of codes toggle
+      function setCount(n){
+        if(n===2){
+          btn2.classList.add('active'); btn3.classList.remove('active');
+          middleBlock.style.display = 'none';
+          middleScaleWrapper.style.display = 'none';
+        } else {
+          btn2.classList.remove('active'); btn3.classList.add('active');
+          middleBlock.style.display = 'block';
+          middleScaleWrapper.style.display = 'block';
+        }
+      }
+      btn2.onclick = ()=> setCount(2);
+      btn3.onclick = ()=> setCount(3);
+      setCount(2);
+
+      // sliders
+      innerScale.oninput = ()=> innerScaleVal.textContent = innerScale.value;
+      middleScale.oninput = ()=> middleScaleVal.textContent = middleScale.value;
+
+      // generation logic
+      generateBtn.onclick = async function(e){
+        e.stopPropagation();
+        showToast('جارٍ توليد الأكواد بدقة 1000px ...');
+        // read values
         const count = btn3.classList.contains('active') ? 3 : 2;
         const outerText = document.getElementById('outerText').value.trim() || 'https://theraqr.example';
         const middleText = document.getElementById('middleText').value.trim() || 'https://theraqr.example';
         const innerText = document.getElementById('innerText').value.trim() || 'https://theraqr.example';
 
+        // colors
         const outerDark = document.getElementById('outerColorDark').value;
         const outerLight = document.getElementById('outerColorLight').value;
-        const middleDark = document.getElementById('middleColorDark').value;
-        const middleLight = document.getElementById('middleColorLight').value;
+        const outerEyes = document.getElementById('outerColorDark').value;
+
         const innerDark = document.getElementById('innerColorDark').value;
         const innerLight = document.getElementById('innerColorLight').value;
+        const innerEyes = document.getElementById('innerColorDark').value;
 
-        const innerPct = parseInt(innerScale.value, 10) / 100;
-        const middlePct = parseInt(middleScale.value, 10) / 100;
+        const middleDark = document.getElementById('middleColorDark').value;
+        const middleLight = document.getElementById('middleColorLight').value;
+        const middleEyes = document.getElementById('middleColorDark').value;
 
-        const targetSize = 1000;
-        const ecc = 'H';
-        const style = settings.style || 'classic';
+        // scales (percent)
+        const innerPct = parseInt(innerScale.value,10)/100; // e.g., 0.2
+        const middlePct = parseInt(middleScale.value,10)/100;
 
-        // 1) QR الداخلي
-        const innerCanvas = document.createElement('canvas');
+        // fixed high settings for this feature
+        const targetSize = 1000; // highest requested
+        const ecc = 'H'; // highest correction
+        const style = 'classic'; // reuse user's style? we'll use selected global style if present
+        const mode = 'embed'; // use embed to ensure no modules under center
+
+        // helper: create canvas and draw QR at 1000px using drawQROnCanvas but override ecc=H and embedGapScale later
+        function createCanvas(size){
+          const c = document.createElement('canvas');
+          c.width = size; c.height = size;
+          return c;
+        }
+
+        // Step 1: generate inner QR (highest resolution)
+        const innerCanvas = createCanvas(targetSize);
         await drawQROnCanvas(innerCanvas, innerText, targetSize, style, {
           colorDark: innerDark,
           colorLight: innerLight,
-          colorEyes: innerDark,
-          ecc,
+          colorEyes: innerEyes,
+          ecc: ecc,
           centerImageData: null,
           centerImageMode: 'overlay',
           embedGapScale: 0.20
-        });
+        }, false);
 
-        // 2) QR المتوسط (إن وُجد)
+        // Step 2: if count===3, create middle QR embedding inner as its center image
         let middleCanvas = null;
-        if (count === 3){
-          middleCanvas = document.createElement('canvas');
+        if(count === 3){
+          middleCanvas = createCanvas(targetSize);
+          // use inner as embedded image: but scale inner image to middlePct of middleCanvas
+          // To ensure embed gap corresponds to proportion, compute embedGapScale = middlePct (approx)
+          const innerDataURL = innerCanvas.toDataURL();
           await drawQROnCanvas(middleCanvas, middleText, targetSize, style, {
             colorDark: middleDark,
             colorLight: middleLight,
-            colorEyes: middleDark,
-            ecc,
-            centerImageData: innerCanvas.toDataURL('image/png'),
+            colorEyes: middleEyes,
+            ecc: ecc,
+            centerImageData: innerDataURL,
             centerImageMode: 'embed',
-            embedGapScale: innerPct  // ✅ إصلاح: نسبة الداخلي بالنسبة للمتوسط
-          });
+            embedGapScale: middlePct // use percentage for gap
+          }, false);
         }
 
-        // 3) QR الخارجي
-        const outerCanvas = document.createElement('canvas');
-        const embedSource = (count === 3 && middleCanvas) ? middleCanvas.toDataURL('image/png') : innerCanvas.toDataURL('image/png');
-        const outerEmbedScale = (count === 2) ? innerPct : middlePct;
+        // Step 3: create outer QR embedding either inner (if count==2) or middle (if count==3)
+        const outerCanvas = createCanvas(targetSize);
+        const embedSourceDataURL = (count===3 && middleCanvas) ? middleCanvas.toDataURL() : innerCanvas.toDataURL();
+        // Determine embedGapScale for outer so that embedded image size equals innerPct when counted relative to outer:
+        // If count==2, innerPct defines inner size relative to outer. If count==3, innerPct defines inner size relative to middle, and middlePct relative to outer.
+        // For outer we need to set embedGapScale to (count===2 ? innerPct : middlePct)
+        const outerEmbedScale = (count===2) ? innerPct : middlePct;
         await drawQROnCanvas(outerCanvas, outerText, targetSize, style, {
           colorDark: outerDark,
           colorLight: outerLight,
-          colorEyes: outerDark,
-          ecc,
-          centerImageData: embedSource,
+          colorEyes: outerEyes,
+          ecc: ecc,
+          centerImageData: embedSourceDataURL,
           centerImageMode: 'embed',
           embedGapScale: outerEmbedScale
-        });
+        }, false);
 
-        // معاينة
+        // If count==3, we already produced middleCanvas which itself contains inner embedded.
+        // If count==2, the outerCanvas has innerCanvas embedded.
+
+        // Show composite preview scaled to preview canvas size
+        const previewSize = Math.min(previewCanvas.width, previewCanvas.height);
         const pctx = previewCanvas.getContext('2d');
-        pctx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
-        pctx.fillStyle = outerLight || '#fff';
-        pctx.fillRect(0, 0, previewCanvas.width, previewCanvas.height);
+        pctx.clearRect(0,0,previewCanvas.width, previewCanvas.height);
+        // draw outerCanvas scaled down
         pctx.drawImage(outerCanvas, 0, 0, previewCanvas.width, previewCanvas.height);
 
+        // enable download button and set dataset url
         downloadBtn.style.display = 'inline-block';
-        downloadBtn.onclick = (ev) => {
+        downloadBtn.onclick = function(ev){
           ev.stopPropagation();
           const link = document.createElement('a');
           link.href = outerCanvas.toDataURL('image/png');
-          link.download = 'theraqr_nested.png';
+          link.download = 'nested_qr.png';
           link.click();
         };
 
-        showToast('تم توليد الأكواد المتداخلة ✅');
-      } catch (err){
-        console.error(err);
-        showToast('فشل التوليد — تحقق من المدخلات');
-      } finally {
-        generateBtn.disabled = false;
-        generateBtn.textContent = oldText;
-      }
-    };
-  })();
-
-  /******************************
-   * 11. ربط قارئ الأكواد المتداخلة
-   ******************************/
-  (function bindNestedReader(){
-    const fileInput = document.getElementById('nestedReaderFile');
-    const camBtn = document.getElementById('nestedReaderCamBtn');
-    const stopBtn = document.getElementById('nestedReaderStopBtn');
-    if (fileInput) fileInput.addEventListener('change', handleNestedReaderImage);
-    if (camBtn) camBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleNestedReaderCamera(); });
-    if (stopBtn) stopBtn.addEventListener('click', (e) => { e.stopPropagation(); stopNestedReaderCamera(); });
-  })();
-
-  /******************************
-   * 12. حفظ قبل الإغلاق
-   ******************************/
-  window.addEventListener('beforeunload', () => {
-    saveSettings();
-    stopCameraIfActive();
-    stopNestedReaderCamera();
-  });
-
-  /******************************
-   * 13. المانيفست (بدون تسجيل Service Worker مُعطَّل)
-   ******************************/
-  (function injectManifest(){
-    try {
-      const manifest = {
-        name: 'TheraQR',
-        short_name: 'TheraQR',
-        start_url: '.',
-        display: 'standalone',
-        background_color: '#ffffff',
-        theme_color: '#00aaff',
-        icons: [
-          { src: '/icon.png', sizes: '192x192', type: 'image/png' },
-          { src: '/icon.png', sizes: '512x512', type: 'image/png' }
-        ]
+        showToast('تم توليد الأكواد المتداخلة بدقة 1000px ✅');
       };
-      const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
-      const link = document.createElement('link');
-      link.rel = 'manifest';
-      link.href = URL.createObjectURL(blob);
-      document.head.appendChild(link);
-    } catch (e){ console.warn('manifest injection failed', e); }
-    // ملاحظة: تسجيل Service Worker من blob URL غير مدعوم في معظم المتصفحات،
-    // لذا تم إزالته. أضف ملف /sw.js حقيقي إذا رغبت بدعم PWA كامل.
-  })();
 
-  /******************************
-   * 14. تهيئة أولية
-   ******************************/
-  (function init(){
-    // ربط الأحداث داخل modal الافتراضي في الصفحة
-    bindSettingsUI(modal);
-  })();
+    })();
 
+    // بقية الكود الموجود سابقًا (service worker، إلخ) يبقى كما هو.
   </script>
 </body>
-  </html>
+</html>
